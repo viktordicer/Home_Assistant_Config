@@ -1,0 +1,43 @@
+---
+hello_world:
+  module: hello
+  class: HelloWorld
+
+# blind_automation:
+#   module: blind_automation
+#   class: BlindAutomation
+#   enable_automation: input_boolean.enable_blind_automation
+#   outside_temperature: sensor.outside_temperature
+#   # wind_speed: sendor.wind_speed
+#   # wind_direction: sendor.wind_direction
+#   max_wind_speed: 30.0
+#   weather: weather.home
+#   blinds:
+#     - entity_id: sensor.blind_child3_tilt
+#       inside_temperature: sensor.child3_temperature
+#       min_azimuth: 40.0
+#       max_azimuth: 90.0
+#     - entity_id: sensor.blind_child1_tilt
+#       inside_temperature: sensor.child1_temperature
+#       min_azimuth: 40.0
+#       max_azimuth: 90.0
+#     - entity_id: sensor.blind_kitchen_tilt
+#       inside_temperature: sensor.kitchen_temperature
+#       min_azimuth: 90.0
+#       max_azimuth: 190.0
+#     - entity_id: sensor.blind_living_tilt
+#       inside_temperature: sensor.living_temperature
+#       min_azimuth: 90.0
+#       max_azimuth: 190.0
+#     - entity_id: sensor.blind_office_tilt
+#       inside_temperature: sensor.office_temperature
+#       min_azimuth: 200.0
+#       max_azimuth: 280.0
+#     - entity_id: sensor.blind_bed_tilt
+#       inside_temperature: sensor.bed_temperature
+#       min_azimuth: 190.0
+#       max_azimuth: 280.0
+#     - entity_id: sensor.blind_child3_tilt
+#       inside_temperature: sensor.child3_temperature
+#       min_azimuth: 260.0
+#       max_azimuth: 310.0
