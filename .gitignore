@@ -1,9 +1,12 @@
 /.cloud
 /.storage
 /custom_components
-/appdaemon
+/appdaemon/compiled
+/appdaemon/dashboards
+/appdaemon/namespace
+/appdaemon/web
+/appdaemon/www
 /blueprints
-/cameras
 /node-red
 /deps
 /esphome
@@ -15,6 +18,6 @@
 /home-assistant_v2.db-wal
 /themes
 /tts
-/www
-/*.pyc
+/www/community/*
+*.pyc
 secrets.yaml
