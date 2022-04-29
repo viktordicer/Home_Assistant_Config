@@ -1,0 +1,41 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+  sun:
+  
+  discovery:
+    ignore:
+      - enigma2
+  
+  tts:
+    - platform: google_translate
+  
+  group: !include groups.yaml
+  automation: !include automations.yaml
+  script: !include scripts.yaml
+  scene: !include scenes.yaml
+  sensor: !include_dir_merge_list sensors
+  switch: !include_dir_merge_list switches
+  input_number: !include_dir_merge_named input_numbers
+  binary_sensor: !include_dir_merge_list binary_sensors
+  
+  influxdb: !include influxdb.yaml
+  
+  recorder: !include recorder.yaml
+  
+  frontend:
+    themes: !include_dir_merge_named themes
+    
+  # media_player: !include_dir_merge_list media
+  modbus: !include komfovent.yaml
+  
+  camera: !include_dir_merge_list cameras
+  
+  telegram_bot:
+    - platform: broadcast
+      api_key: !secret telegram_key
+      allowed_chat_ids:
+        - 1863022133 # example id of a user
+  
+  

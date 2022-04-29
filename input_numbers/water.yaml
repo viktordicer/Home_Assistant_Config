@@ -1,0 +1,13 @@
+slider_water_internal:
+  name: Intermal max
+  initial: 20
+  min: 5
+  max: 60
+  step: 5
+
+slider_water_external:
+  name: External max
+  initial: 200
+  min: 100
+  max: 1000
+  step: 10

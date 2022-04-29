@@ -1,0 +1,15 @@
+- platform: systemmonitor
+  scan_interval: 900
+  resources:
+    - type: disk_use_percent
+      arg: /config
+    - type: disk_use 
+      arg: /config
+    - type: disk_free
+      arg: /config
+    - type: memory_use_percent
+    - type: memory_use
+    - type: memory_free
+    - type: processor_temperature
+    - type: processor_use
+- platform: version

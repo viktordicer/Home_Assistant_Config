@@ -1,0 +1,19 @@
+clean_foyer:
+  alias: Clean the foyer
+  sequence:
+  - service: xiaomi_miio.vacuum_clean_segment
+    target:
+      entity_id: vacuum.roborock_s6_pure
+    data:
+      segments: 18
+  mode: single
+
+clean_living:
+  alias: Clean the living
+  sequence:
+  - service: xiaomi_miio.vacuum_clean_segment
+    target:
+      entity_id: vacuum.roborock_s6_pure
+    data:
+      segments: 16
+  mode: single

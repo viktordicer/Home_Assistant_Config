@@ -1,0 +1,63 @@
+- platform: mqtt
+  state_topic: "sensor/technical/lit_inter"
+  name: "Technical inter liters"
+  unit_of_measurement: "l"
+
+- platform: mqtt
+  state_topic: "sensor/technical/lit_exter"
+  name: "Technical exter liters"
+  unit_of_measurement: "l"
+  
+- platform: mqtt
+  force_update: true
+  state_topic: "sensor/technical/valve_inter"
+  name: "Technical valve1 state"
+
+- platform: mqtt
+  force_update: true
+  state_topic: "sensor/technical/valve_exter"
+  name: "Technical valve2 state"
+
+- platform: mqtt
+  force_update: true
+  state_topic: "sensor/technical/valve_error"
+  name: "Technical valve error"
+
+- platform: mqtt
+  state_topic: "sensor/technical/connection_failed"
+  name: "Technical connection failed"
+
+- platform: mqtt
+  state_topic: "sensor/technical/set_internal_max"
+  name: "Technical internal max set"
+
+- platform: mqtt
+  state_topic: "sensor/technical/set_external_max"
+  name: "Technical external max set"
+
+- platform: mqtt
+  state_topic: "sensor/technical/internal_max"
+  name: "Technical internal max"
+
+- platform: mqtt
+  state_topic: "sensor/technical/external_max"
+  name: "Technical external max"
+
+
+# SQLITE
+
+- platform: sql
+  scan_interval: 3600
+  queries:
+    - name: internal water daily
+      query: 'SELECT round(sum(state),2) as state FROM states WHERE entity_id = "sensor.technical_inter_liters" and date(created) = date("now");'
+      column: "state"
+      unit_of_measurement: "l"
+
+- platform: sql
+  scan_interval: 3600
+  queries:
+    - name: external water daily
+      query: 'SELECT round(sum(state),2) as state FROM states WHERE entity_id = "sensor.technical_exter_liters" and date(created) = date("now");'
+      column: "state"
+      unit_of_measurement: "l"

@@ -1,0 +1,355 @@
+- id: be29c9ca132c49f4939ab10911a4e673
+  alias: water_internal_max
+  trigger:
+  - platform: state
+    entity_id: input_number.slider_water_internal
+  action:
+  - service: mqtt.publish
+    data:
+      topic: sensor/technical/set_internal_max
+      retain: true
+      payload: '{{ states(''input_number.slider_water_internal'') | int }}'
+  - service: telegram_bot.send_message
+    data:
+      message: 'Internal max flow was changed to {{ states(''input_number.slider_water_internal'')
+        | int }} '
+  mode: single
+- id: fb1b26059d554d8da12ca7685e1c7a1a
+  alias: water_external_max
+  trigger:
+  - platform: state
+    entity_id: input_number.slider_water_external
+  action:
+  - service: mqtt.publish
+    data:
+      topic: sensor/technical/set_external_max
+      retain: true
+      payload: '{{ states(''input_number.slider_water_external'') | int }}'
+  - service: telegram_bot.send_message
+    data:
+      message: 'External max flow was changed to {{ states(''input_number.slider_water_external'')
+        | int }} '
+  mode: single
+- id: '1623776017339'
+  alias: Internal water valve
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.technical_valve1_state
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: Internal water valve was {{states.sensor.technical_valve1_state.state}}
+  mode: single
+- id: '1623784004873'
+  alias: External water valve
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.technical_valve2_state
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: External water valve was {{states.sensor.technical_valve2_state.state}}
+  mode: single
+- id: '1631712863035'
+  alias: Homeassistant reboot
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      topic: command/pool/state
+      payload: '0'
+  - service: mqtt.publish
+    data:
+      topic: sensor/technical/get_state
+      payload: '0'
+  - service: mqtt.publish
+    data:
+      payload: s-0-11111-111
+      topic: sensor.blind_all
+  mode: single
+- id: '1632504069551'
+  alias: blind-all-tilt
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_number.blind_all_tilt
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      topic: sensor/blind/all
+      retain: false
+      payload: t-{{ states('input_number.blind_all_tilt') | int }}-11111-111
+  mode: single
+- id: '1632504069552'
+  alias: blind-living-tilt
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_number.blind_living_tilt
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.blind_living_tilt'') | int != states(''input_number.blind_living_tilt'')
+      | int }}'
+  action:
+  - service: mqtt.publish
+    data:
+      topic: sensor/blind/all
+      retain: false
+      payload: t-{{ states('input_number.blind_living_tilt') | int }}-00001-000
+  mode: single
+- id: '1632504069553'
+  alias: blind-kitchen-tilt
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_number.blind_kitchen_tilt
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.blind_kitchen_tilt'') | int != states(''input_number.blind_kitchen_tilt'')
+      | int }}'
+  action:
+  - service: mqtt.publish
+    data:
+      topic: sensor/blind/all
+      retain: false
+      payload: t-{{ states('input_number.blind_kitchen_tilt') | int }}-00010-000
+  mode: single
+- id: '1632504069554'
+  alias: blind-terrace-tilt
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_number.blind_terrace_tilt
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.blind_terrace_tilt'') | int != states(''input_number.blind_terrace_tilt'')
+      | int }}'
+  action:
+  - service: mqtt.publish
+    data:
+      topic: sensor/blind/all
+      retain: false
+      payload: t-{{ states('input_number.blind_terrace_tilt') | int }}-00100-000
+  mode: single
+- id: '1632504069555'
+  alias: blind-bed-tilt
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_number.blind_bed_tilt
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.blind_bed_tilt'') | int != states(''input_number.blind_bed_tilt'')
+      | int }}'
+  action:
+  - service: mqtt.publish
+    data:
+      topic: sensor/blind/all
+      retain: false
+      payload: t-{{ states('input_number.blind_bed_tilt') | int }}-01000-000
+  mode: single
+- id: '1632504069556'
+  alias: blind-office-tilt
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_number.blind_office_tilt
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.blind_office_tilt'') | int != states(''input_number.blind_office_tilt'')
+      | int }}'
+  action:
+  - service: mqtt.publish
+    data:
+      topic: sensor/blind/all
+      retain: false
+      payload: t-{{ states('input_number.blind_office_tilt') | int }}-10000-000
+  mode: single
+- id: '1632504069557'
+  alias: blind-child1-tilt
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_number.blind_child1_tilt
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.blind_child1_tilt'') | int != states(''input_number.blind_child1_tilt'')
+      | int }}'
+  action:
+  - service: mqtt.publish
+    data:
+      topic: sensor/blind/all
+      retain: false
+      payload: t-{{ states('input_number.blind_child1_tilt') | int }}-00000-001
+  mode: single
+- id: '1632504069558'
+  alias: blind-child2-tilt
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_number.blind_child2_tilt
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.blind_child2_tilt'') | int != states(''input_number.blind_child2_tilt'')
+      | int }}'
+  action:
+  - service: mqtt.publish
+    data:
+      topic: sensor/blind/all
+      retain: false
+      payload: t-{{ states('input_number.blind_child2_tilt') | int }}-00000-010
+  mode: single
+- id: '1632504069559'
+  alias: blind-child3-tilt
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_number.blind_child3_tilt
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.blind_child3_tilt'') | int != states(''input_number.blind_child3_tilt'')
+      | int }}'
+  action:
+  - service: mqtt.publish
+    data:
+      topic: sensor/blind/all
+      retain: false
+      payload: t-{{ states('input_number.blind_child3_tilt') | int }}-00000-100
+  mode: single
+- id: '1632504962528'
+  alias: blind-mqtt-living
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: sensor/blind/living-tilt
+  condition:
+  - condition: template
+    value_template: '{{ trigger.payload | int != states(''input_number.blind_living_tilt'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.blind_living_tilt
+      value: '{{ trigger.payload | int}}'
+  mode: single
+- id: '1632504962530'
+  alias: blind-mqtt-kitchen
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: sensor/blind/kitchen-tilt
+  condition:
+  - condition: template
+    value_template: '{{ trigger.payload | int != states(''input_number.blind_kitchen_tilt'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.blind_kitchen_tilt
+      value: '{{ trigger.payload | int}}'
+  mode: single
+- id: '1632504962531'
+  alias: blind-mqtt-terrace
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: sensor/blind/terrace-tilt
+  condition:
+  - condition: template
+    value_template: '{{ trigger.payload | int != states(''input_number.blind_terrace_tilt'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.blind_terrace_tilt
+      value: '{{ trigger.payload | int}}'
+  mode: single
+- id: '1632504962541'
+  alias: blind-mqtt-bed
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: sensor/blind/bed-tilt
+  condition:
+  - condition: template
+    value_template: '{{ trigger.payload | int != states(''input_number.blind_bed_tilt'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.blind_bed_tilt
+      value: '{{ trigger.payload | int}}'
+  mode: single
+- id: '1632504962551'
+  alias: blind-mqtt-office
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: sensor/blind/office-tilt
+  condition:
+  - condition: template
+    value_template: '{{ trigger.payload | int != states(''input_number.blind_office_tilt'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.blind_office_tilt
+      value: '{{ trigger.payload | int}}'
+  mode: single
+- id: '1632504962561'
+  alias: blind-mqtt-child1
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: sensor/blind/child1-tilt
+  condition:
+  - condition: template
+    value_template: '{{ trigger.payload | int != states(''input_number.blind_child1_tilt'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.blind_child1_tilt
+      value: '{{ trigger.payload | int}}'
+  mode: single
+- id: '1632504962571'
+  alias: blind-mqtt-child2
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: sensor/blind/child2-tilt
+  condition:
+  - condition: template
+    value_template: '{{ trigger.payload | int != states(''input_number.blind_child2_tilt'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.blind_child2_tilt
+      value: '{{ trigger.payload | int}}'
+  mode: single
+- id: '1632504962581'
+  alias: blind-mqtt-child3
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: sensor/blind/child3-tilt
+  condition:
+  - condition: template
+    value_template: '{{ trigger.payload | int != states(''input_number.blind_child3_tilt'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.blind_child3_tilt
+      value: '{{ trigger.payload | int}}'
+  mode: single

@@ -1,0 +1,96 @@
+host: a0d7b954-influxdb
+port: 8086
+database: homeassistant
+username: homeassistant
+password: homeassistant
+default_measurement : state
+
+include:
+  entities:
+    - sensor.foyer_l1_consumption_increment
+    - sensor.foyer_l2_consumption_increment
+    - sensor.foyer_l3_consumption_increment
+    - sensor.technical_exter_liters
+    - sensor.technical_inter_liters
+    - sensor.foyer_temperature
+    - sensor.foyer_humidity
+    - sensor.child1_temperature
+    - sensor.child1_humidity
+    - sensor.child2_temperature
+    - sensor.child2_humidity
+    - sensor.child3_temperature
+    - sensor.child3_humidity
+    - sensor.bath_temperature
+    - sensor.bath_humidity
+    - sensor.technical_temperature
+    - sensor.technical_humidity
+    - sensor.hall_temperature
+    - sensor.hall_humidity
+    - sensor.bed_temperature
+    - sensor.bed_humidity
+    - sensor.office_temperature
+    - sensor.office_humidity
+    - sensor.larder_temperature
+    - sensor.larder_humidity
+    - sensor.kitchen_temperature
+    - sensor.kitchen_humidity
+    - sensor.living_temperature
+    - sensor.living_humidity
+    - sensor.loft_temperature
+    - sensor.loft_humidity
+    - sensor.pool_temperature
+
+
+
+    - sensor.komfovent_auto
+    - sensor.komfovent_eco
+    - sensor.komfovent_energy_saving
+    - sensor.komfovent_extract_fan_intensivity
+    - sensor.komfovent_extract_flow
+    - sensor.komfovent_extract_temperature_c
+    - sensor.komfovent_filter_dirt
+    - sensor.komfovent_filter_dirt_2
+    - sensor.komfovent_filter_impurity
+    - sensor.komfovent_heat_exchanger_efficiency
+    - sensor.komfovent_heat_recovery_w
+    - sensor.komfovent_heating_power_w
+    - sensor.komfovent_heating_recovery_day_kwh
+    - sensor.komfovent_heating_recovery_month_kwh
+    - sensor.komfovent_heating_recovery_total_kwh
+    - sensor.komfovent_mode
+    - sensor.komfovent_outdoor_temperature_c
+    - sensor.komfovent_power
+    - sensor.komfovent_power_consumption_w
+    - sensor.komfovent_shedule
+    - sensor.komfovent_specific_power_spi
+    - sensor.komfovent_supply_fan_intensivity
+    - sensor.komfovent_supply_flow
+    - sensor.komfovent_supply_temperature_c
+    - sensor.hacs
+    - zone.home
+    - sun.sun
+
+    - sensor.foyer_l1_power
+    - sensor.foyer_l2_power
+    - sensor.foyer_l3_power
+    - sensor.foyer_l1_power
+    - sensor.terrace_door_battery
+    - sensor.terrace_door_linkquality
+    - sensor.terrace_door_voltage
+    - sensor.foyer_door_battery
+    - sensor.foyer_door_linkquality
+    - sensor.foyer_door_voltage
+    - binary_sensor.rpi_power_status
+    - sensor.technical_connection_failed
+    - sensor.foyer_connection_failed
+    - sensor.disk_use_percent_config
+    - sensor.disk_use_config
+    - sensor.disk_free_config
+    - sensor.memory_use_percent
+    - sensor.memory_use
+    - sensor.memory_free
+    - sensor.processor_temperature
+    - sensor.processor_use
+    - sensor.current_version
+    - sensor.hp_smart_tank_510_series
+    - sensor.hp_smart_tank_510_series_black_cartridge

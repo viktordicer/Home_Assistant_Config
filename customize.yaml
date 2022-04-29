@@ -1,0 +1,2 @@
+sensor.blind_bed_tilt:
+  status: wind

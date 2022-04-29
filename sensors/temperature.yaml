@@ -1,0 +1,155 @@
+##################  FOYER ############################
+- platform: mqtt
+  state_topic: "sensor/foyer/temperature"
+  name: "Foyer temperature"
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "sensor/foyer/humidity"
+  name: "Foyer humidity"
+  unit_of_measurement: "%"
+
+##################  CHILD1 ############################
+- platform: mqtt
+  state_topic: "sensor/child1/temperature"
+  name: "Child1 temperature"
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "sensor/child1/humidity"
+  name: "Child1 humidity"
+  unit_of_measurement: "%"
+
+##################  CHILD2 ############################
+- platform: mqtt
+  state_topic: "sensor/child2/temperature"
+  name: "Child2 temperature"
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "sensor/child2/humidity"
+  name: "Child2 humidity"
+  unit_of_measurement: "%"
+
+##################  BATH ############################
+- platform: mqtt
+  state_topic: "sensor/bath/temperature"
+  name: "Bath temperature"
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "sensor/bath/humidity"
+  name: "Bath humidity"
+  unit_of_measurement: "%"
+
+##################  Technical ############################
+- platform: mqtt
+  state_topic: "sensor/technical/temperature1"
+  name: "Technical temperature"
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "sensor/technical/humidity"
+  name: "Technical humidity"
+  unit_of_measurement: "%"
+
+##################  Hall ############################
+- platform: mqtt
+  state_topic: "sensor/hall/temperature"
+  name: "Hall temperature"
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "sensor/hall/humidity"
+  name: "Hall humidity"
+  unit_of_measurement: "%"
+
+
+##################  Child3 ############################
+- platform: mqtt
+  state_topic: "sensor/child3/temperature"
+  name: "Child3 temperature"
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "sensor/child3/humidity"
+  name: "Child3 humidity"
+  unit_of_measurement: "%"
+
+##################  Bed ############################
+- platform: mqtt
+  state_topic: "sensor/bed/temperature"
+  name: "Bed temperature"
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "sensor/bed/humidity"
+  name: "Bed humidity"
+  unit_of_measurement: "%"
+
+##################  Ofiice ############################
+- platform: mqtt
+  state_topic: "sensor/office/temperature"
+  name: "Office temperature"
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "sensor/office/humidity"
+  name: "Office humidity"
+  unit_of_measurement: "%"
+
+##################  Larder ############################
+- platform: mqtt
+  state_topic: "sensor/larder/temperature"
+  name: "Larder temperature"
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "sensor/larder/humidity"
+  name: "Larder humidity"
+  unit_of_measurement: "%"
+
+##################  Kitchen ############################
+- platform: mqtt
+  state_topic: "sensor/kitchen/temperature"
+  name: "Kitchen temperature"
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "sensor/kitchen/humidity"
+  name: "Kitchen humidity"
+  unit_of_measurement: "%"
+
+##################  Living ############################
+- platform: mqtt
+  state_topic: "sensor/living/temperature"
+  name: "Living temperature"
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "sensor/living/humidity"
+  name: "Living humidity"
+  unit_of_measurement: "%"
+
+##################  Loft ############################
+- platform: mqtt
+  state_topic: "sensor/loft/temperature"
+  name: "Loft temperature"
+  unit_of_measurement: "°C"
+  
+- platform: mqtt
+  state_topic: "sensor/loft/humidity"
+  name: "Loft humidity"
+  unit_of_measurement: "%"
+  
+  ##################  POOL ############################
+- platform: mqtt
+  state_topic: "sensor/pool/temperature"
+  name: "Pool temperature"
+  unit_of_measurement: "°C"
+
+  ##################  POOL OUTSIDE ####################
+- platform: mqtt
+  state_topic: "sensor/pool/outside_temperature"
+  name: "Pool temperature outside"
+  unit_of_measurement: "°C"

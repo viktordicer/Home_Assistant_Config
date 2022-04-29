@@ -1,0 +1,9 @@
+- platform: mqtt
+  force_update: true
+  state_topic: "sensor/pool/filter"
+  name: "Pool filter state"
+
+- platform: mqtt
+  force_update: true
+  state_topic: "sensor/pool/light"
+  name: "Light filter state"

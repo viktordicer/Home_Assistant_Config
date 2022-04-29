@@ -1,0 +1,53 @@
+blind_all_tilt:
+  name: All tilt
+  min: 0
+  max: 100
+  step: 10
+
+blind_living_tilt:
+  name: Living tilt
+  min: 0
+  max: 100
+  step: 10
+
+blind_kitchen_tilt:
+  name: Kitchen tilt
+  min: 0
+  max: 100
+  step: 10
+
+blind_terrace_tilt:
+  name: Terrace tilt
+  min: 0
+  max: 100
+  step: 10
+
+blind_bed_tilt:
+  name: Bed tilt
+  min: 0
+  max: 100
+  step: 10
+
+blind_office_tilt:
+  name: Office tilt
+  min: 0
+  max: 100
+  step: 10
+
+blind_child1_tilt:
+  name: Child1 tilt
+  min: 0
+  max: 100
+  step: 10
+
+blind_child2_tilt:
+  name: Child2 tilt
+  min: 0
+  max: 100
+  step: 10
+
+blind_child3_tilt:
+  name: Child3 tilt
+  min: 0
+  max: 100
+  step: 10

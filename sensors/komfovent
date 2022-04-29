@@ -1,0 +1,256 @@
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Power"
+      hub: Komfovent
+      register: 0
+      register_type: holding
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Eco"
+      hub: Komfovent
+      register: 2
+      register_type: holding
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Auto"
+      hub: Komfovent
+      register: 3
+      register_type: holding
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Mode"
+      hub: Komfovent
+      register: 4
+      register_type: holding
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Shedule"
+      hub: Komfovent
+      register: 5
+      register_type: holding
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Supply temperature 'C"
+      hub: Komfovent
+      register: 901
+      register_type: holding
+      unit_of_measurement: °C        
+      scale: 0.1
+      precision: 1
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Extract temperature 'C"
+      hub: Komfovent
+      register: 902
+      register_type: holding
+      scale: 0.1
+      unit_of_measurement: °C
+      precision: 1
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Supply Flow '%"
+      hub: Komfovent
+      register: 905
+      count: 2            
+      register_type: holding
+      precision: 1
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Extract Flow '%"
+      hub: Komfovent
+      register: 907
+      count: 2          
+      register_type: holding
+      precision: 1
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Supply Fan Intensivity '%"
+      hub: Komfovent
+      register: 909
+      register_type: holding
+      scale: 0.1
+      precision: 1
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Extract Fan Intensivity '%"
+      hub: Komfovent
+      register: 910
+      register_type: holding
+      scale: 0.1
+      precision: 1        
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Outdoor temperature 'C"
+      hub: Komfovent
+      register: 903
+      register_type: holding
+      unit_of_measurement: °C        
+      scale: 0.1
+      precision: 1        
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Filter Dirt, %"
+      hub: Komfovent
+      register: 918
+      register_type: holding
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Filter Dirt, %"
+      hub: Komfovent
+      register: 917
+      register_type: holding
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Filter Impurity, %"
+      hub: Komfovent
+      register: 916
+      register_type: holding        
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Heating power, W"
+      hub: Komfovent
+      register: 912
+      register_type: holding
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Heating consumption day, kWh"
+      hub: Komfovent
+      register: 932
+      register_type: holding
+      count: 2
+      precision: 2
+      scale: 0.001 
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Heating consumption month, kWh"
+      hub: Komfovent
+      register: 934
+      register_type: holding
+      count: 2
+      precision: 2
+      scale: 0.001 
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Heating consumption total, kWh"
+      hub: Komfovent
+      register: 936
+      register_type: holding
+      count: 2
+      precision: 2
+      scale: 0.001 
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Power consumption, W"
+      hub: Komfovent
+      register: 920
+      register_type: holding          
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Power consumption day, kWh"
+      hub: Komfovent
+      register: 926
+      register_type: holding 
+      count: 2
+      precision: 2
+      scale: 0.001          
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Power consumption month, kWh"
+      hub: Komfovent
+      register: 928
+      register_type: holding   
+      count: 2
+      precision: 2
+      scale: 0.001        
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Power consumption total, kWh"
+      hub: Komfovent
+      register: 930
+      register_type: holding 
+      count: 2
+      precision: 2
+      scale: 0.001          
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Heating Recovery Day, kWh"
+      hub: Komfovent
+      register: 938
+      register_type: holding
+      count: 2
+      precision: 2
+      scale: 0.001        
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Heating Recovery Month, kWh"
+      hub: Komfovent
+      register: 940
+      register_type: holding
+      count: 2
+      precision: 2
+      scale: 0.001        
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Heating Recovery Total, kWh"
+      hub: Komfovent
+      register: 942
+      count: 2
+      register_type: holding
+      precision: 2
+      scale: 0.001
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Heat Recovery, W"
+      hub: Komfovent
+      register: 922
+      register_type: holding 
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Heat exchanger efficiency, %"
+      hub: Komfovent
+      register: 923
+      register_type: holding
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Energy saving, %"
+      hub: Komfovent
+      register: 924
+      register_type: holding 
+- platform: modbus
+  scan_interval: 30
+  registers:
+    - name: "Komfovent Specific power (SPI)"
+      hub: Komfovent
+      register: 925
+      register_type: holding 
+      scale: 0.001
+      precision: 2
