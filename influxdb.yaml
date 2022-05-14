@@ -41,16 +41,10 @@ include:
     - sensor.pool_temperature
 
 
-
-    - sensor.komfovent_auto
-    - sensor.komfovent_eco
     - sensor.komfovent_energy_saving
     - sensor.komfovent_extract_fan_intensivity
     - sensor.komfovent_extract_flow
     - sensor.komfovent_extract_temperature_c
-    - sensor.komfovent_filter_dirt
-    - sensor.komfovent_filter_dirt_2
-    - sensor.komfovent_filter_impurity
     - sensor.komfovent_heat_exchanger_efficiency
     - sensor.komfovent_heat_recovery_w
     - sensor.komfovent_heating_power_w
@@ -59,11 +53,7 @@ include:
     - sensor.komfovent_heating_recovery_total_kwh
     - sensor.komfovent_mode
     - sensor.komfovent_outdoor_temperature_c
-    - sensor.komfovent_power
     - sensor.komfovent_power_consumption_w
-    - sensor.komfovent_shedule
-    - sensor.komfovent_specific_power_spi
-    - sensor.komfovent_supply_fan_intensivity
     - sensor.komfovent_supply_flow
     - sensor.komfovent_supply_temperature_c
     - sensor.hacs
