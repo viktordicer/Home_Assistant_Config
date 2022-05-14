@@ -1,0 +1,43 @@
+esphome:
+  name: esp32-board
+  platform: ESP32
+  board: nodemcu-32s
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp32-Board Fallback Hotspot"
+    password: !secret ap_password
+
+captive_portal:
+i2c:
+  sda: 21
+  scl: 22
+
+dallas:
+  - pin: 23
+    update_interval: 900s
+  
+sensor:
+  - platform: dallas
+    address: 0xAF3C01D60776DE28
+    name: "Outside temperature"
+    
+  - platform: hdc1080
+    temperature:
+      name: "Loft temperature"
+    humidity:
+      name: "Loft humidity"
+    update_interval: 900s
