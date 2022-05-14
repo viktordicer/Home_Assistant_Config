@@ -20,32 +20,32 @@
       command_off: 0
   sensors:
     - name: "Komfovent Power"
-      scan_interval: 60
+      scan_interval: 240
       address: 0
       input_type: holding
 
     - name: "Komfovent Eco"
-      scan_interval: 60
+      scan_interval: 240
       address: 2
       input_type: holding
 
     - name: "Komfovent Auto"
-      scan_interval: 60
+      scan_interval: 240
       address: 3
       input_type: holding
 
     - name: "Komfovent Mode"
-      scan_interval: 60
+      scan_interval: 240
       address: 4
       input_type: holding
 
     - name: "Komfovent Schedule"
-      scan_interval: 60
+      scan_interval: 3600
       address: 5
       input_type: holding
-
+# TEMPERATURE
     - name: "Komfovent Supply temperature 'C"
-      scan_interval: 60
+      scan_interval: 240
       address: 901
       input_type: holding
       unit_of_measurement: °C        
@@ -53,15 +53,23 @@
       precision: 1
 
     - name: "Komfovent Extract temperature 'C"
-      scan_interval: 60
+      scan_interval: 240
       address: 902
+      input_type: holding
+      unit_of_measurement: °C        
+      scale: 0.1
+      precision: 1
+
+    - name: "Komfovent Outdoor temperature 'C"
+      scan_interval: 240
+      address: 903
       input_type: holding
       unit_of_measurement: °C        
       scale: 0.1
       precision: 1
         
     - name: "Komfovent Supply Flow '%"
-      scan_interval: 60
+      scan_interval: 120
       address: 905
       count: 2
       unit_of_measurement: '%'
@@ -70,7 +78,7 @@
       data_type: uint32
 
     - name: "Komfovent Extract Flow '%"
-      scan_interval: 60
+      scan_interval: 120
       address: 907
       count: 2
       input_type: holding
@@ -78,19 +86,14 @@
       precision: 1
       data_type: uint32
 
-    - name: "Komfovent Outdoor temperature 'C"
-      scan_interval: 60
-      address: 903
-      input_type: holding
-      unit_of_measurement: °C        
-      scale: 0.1
-      precision: 1
 
     - name: "Komfovent Filter Impurity, %"
       scan_interval: 7200
       address: 916
       input_type: holding
 
+
+# POWER
     - name: "Komfovent Heating power, W"
       scan_interval: 7200
       address: 912
