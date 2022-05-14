@@ -6,9 +6,6 @@ exclude:
     - sensor.komfovent_eco
     - sensor.komfovent_energy_saving
     - sensor.komfovent_extract_flow
-    - sensor.komfovent_filter_dirt
-    - sensor.komfovent_filter_dirt_2
-    - sensor.komfovent_filter_impurity
     - sensor.komfovent_heat_exchanger_efficiency
     - sensor.komfovent_heat_recovery_w
     - sensor.komfovent_heating_power_w
@@ -22,4 +19,4 @@ exclude:
     - sensor.komfovent_specific_power_spi
     - sensor.komfovent_supply_flow
   event_types:
-    - call_service
+    # - call_service
