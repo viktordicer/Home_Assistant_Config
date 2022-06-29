@@ -62,23 +62,26 @@
 - platform: sql
   scan_interval: 3600
   queries:
-    - name: l1 daily consum
-      query: 'SELECT round(sum(state/100),2) as state FROM states WHERE entity_id = "sensor.foyer_l1_consumption_increment" and date(created) = date("now");'
-      column: "state"
+    - name: l1 daily con
+      query: >
+        SELECT round(sum(state/100),2) as state FROM states WHERE entity_id = "sensor.foyer_l1_consumption_increment" and date(last_updated) = date("now");
+      column: 'state'
       unit_of_measurement: "kWh"
 
 - platform: sql
   scan_interval: 3600
   queries:
-    - name: l2 daily consum
-      query: 'SELECT round(sum(state/100),2) as state FROM states WHERE entity_id = "sensor.foyer_l2_consumption_increment" and date(created) = date("now");'
-      column: "state"
+    - name: l2 daily con
+      query: >
+        SELECT round(sum(state/100),2) as state FROM states WHERE entity_id = "sensor.foyer_l2_consumption_increment" and date(last_updated) = date("now");
+      column: 'state'
       unit_of_measurement: "kWh"
 
 - platform: sql
   scan_interval: 3600
   queries:
-    - name: l3 daily consum
-      query: 'SELECT round(sum(state/100),2) as state FROM states WHERE entity_id = "sensor.foyer_l3_consumption_increment" and date(created) = date("now");'
-      column: "state"
+    - name: l3 daily con
+      query: >
+        SELECT round(sum(state/100),2) as state FROM states WHERE entity_id = "sensor.foyer_l3_consumption_increment" and date(last_updated) = date("now");
+      column: 'state'
       unit_of_measurement: "kWh"
