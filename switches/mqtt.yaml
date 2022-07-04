@@ -29,3 +29,11 @@
   payload_on: "1" 
   payload_off: "0" 
   retain: false
+
+- platform: mqtt
+  name: pool_ph
+  state_topic: "command/pool/ph"
+  command_topic: "command/pool/ph"
+  payload_on: "1" 
+  payload_off: "0" 
+  retain: false
