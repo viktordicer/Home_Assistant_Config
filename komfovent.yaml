@@ -45,7 +45,7 @@
       input_type: holding
 # TEMPERATURE
     - name: "Komfovent Supply temperature 'C"
-      scan_interval: 240
+      scan_interval: 480
       address: 901
       input_type: holding
       unit_of_measurement: °C        
@@ -53,7 +53,7 @@
       precision: 1
 
     - name: "Komfovent Extract temperature 'C"
-      scan_interval: 240
+      scan_interval: 480
       address: 902
       input_type: holding
       unit_of_measurement: °C        
@@ -61,7 +61,7 @@
       precision: 1
 
     - name: "Komfovent Outdoor temperature 'C"
-      scan_interval: 240
+      scan_interval: 480
       address: 903
       input_type: holding
       unit_of_measurement: °C        
@@ -101,7 +101,7 @@
       data_type: uint32
 
     - name: "Komfovent Heating consumption day, kWh"
-      scan_interval: 43200
+      scan_interval: 7200
       address: 932
       input_type: holding
       count: 2
@@ -128,13 +128,13 @@
       data_type: uint32
 
     - name: "Komfovent Power consumption, W"
-      scan_interval: 43200
+      scan_interval: 300
       address: 920
       input_type: holding
       data_type: uint16
 
     - name: "Komfovent Power consumption day, kWh"
-      scan_interval: 43200
+      scan_interval: 3600
       address: 926
       input_type: holding
       count: 2
