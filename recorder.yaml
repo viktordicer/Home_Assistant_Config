@@ -19,5 +19,13 @@ exclude:
     - sensor.komfovent_shedule
     - sensor.komfovent_specific_power_spi
     - sensor.komfovent_supply_flow
+    - sensor.foyer_door_battery
+    - binary_sensor.foyer_door_contact
+    - sensor.foyer_door_linkquality
+    - sensor.foyer_door_voltage
+    - sensor.terrace_door_battery
+    - binary_sensor.terrace_door_contact
+    - sensor.terrace_door_linkquality
+    - sensor.terrace_door_voltage
   event_types:
-    # - call_service
+    # - call_service+ ;
