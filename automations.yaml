@@ -353,3 +353,35 @@
       entity_id: input_number.blind_child3_tilt
       value: '{{ trigger.payload | int}}'
   mode: single
+- id: '1657545547769'
+  alias: Power_sql_update
+  description: ''
+  trigger:
+  - platform: time_pattern
+    hours: /1
+  condition: []
+  action:
+  - service: homeassistant.update_entity
+    data: {}
+    target:
+      entity_id:
+      - sensor.l1_daily_con
+      - sensor.l2_daily_con
+      - sensor.l3_daily_con
+      - sensor.sum_daily_con
+  mode: single
+- id: '1657551051872'
+  alias: Water_sql_update
+  description: ''
+  trigger:
+  - platform: time_pattern
+    hours: /1
+  condition: []
+  action:
+  - service: homeassistant.update_entity
+    data: {}
+    target:
+      entity_id:
+      - sensor.external_water_daily_3
+      - sensor.internal_water_daily_3
+  mode: single
