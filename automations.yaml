@@ -369,6 +369,9 @@
       - sensor.l2_daily_con
       - sensor.l3_daily_con
       - sensor.sum_daily_con
+      - sensor.l3_dishwasher_sum
+      - sensor.l1_oven_sum
+      - sensor.l2_refrigerator_sum
   mode: single
 - id: '1657551051872'
   alias: Water_sql_update
