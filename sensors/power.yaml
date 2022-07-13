@@ -1,41 +1,45 @@
+# POWER
 - platform: mqtt
-  force_update: true
+  force_update: false
   state_topic: "sensor/foyer/L1_power"
   name: "Foyer L1 power"
   unit_of_measurement: "W"
 
 - platform: mqtt
-  force_update: true
+  force_update: false
   state_topic: "sensor/foyer/L2_power"
   name: "Foyer L2 power"
   unit_of_measurement: "W"
 
 - platform: mqtt
-  force_update: true
+  force_update: false
   state_topic: "sensor/foyer/L3_power"
   name: "Foyer L3 power"
   unit_of_measurement: "W"
 
+# APPLIANCES POWER
 - platform: mqtt
-  force_update: true
-  state_topic: "sensor/foyer/L1_consum"
-  name: "Foyer L1 consumption"
-  unit_of_measurement: "kWh"
+  force_update: false 
+  state_topic: "sensor/foyer/L1_oven"
+  name: "Foyer L1 oven power"
+  unit_of_measurement: "W"
 
 - platform: mqtt
-  force_update: true
-  state_topic: "sensor/foyer/L2_consum"
-  name: "Foyer L2 consumption"
-  unit_of_measurement: "kWh"
+  force_update: false 
+  state_topic: "sensor/foyer/L2_refrigerator"
+  name: "Foyer L2 refrigerator power"
+  unit_of_measurement: "W"
 
 - platform: mqtt
-  force_update: true
-  state_topic: "sensor/foyer/L3_consum"
-  name: "Foyer L3 consumption"
-  unit_of_measurement: "kWh"
+  force_update: false 
+  state_topic: "sensor/foyer/L3_dishwasher"
+  name: "Foyer L3 dishwasher power"
+  unit_of_measurement: "W"
 
+
+  # INCREMENT
 - platform: mqtt
-  force_update: true 
+  force_update: false 
   state_topic: "sensor/foyer/L1_con_inc"
   name: "Foyer L1 consumption increment"
   unit_of_measurement: "kWh"
@@ -52,14 +56,35 @@
   name: "Foyer L3 consumption increment"
   unit_of_measurement: "kWh"
 
+# INCREMENT APPLIANCES
+- platform: mqtt
+  force_update: true 
+  state_topic: "sensor/foyer/L1_oven_inc"
+  name: "Foyer L1 oven increment"
+  unit_of_measurement: "kWh"
+
+- platform: mqtt
+  force_update: true 
+  state_topic: "sensor/foyer/L2_refrigerator_inc"
+  name: "Foyer L2 refrigerator increment"
+  unit_of_measurement: "kWh"
+
+- platform: mqtt
+  force_update: true 
+  state_topic: "sensor/foyer/L3_dishwasher_inc"
+  name: "Foyer L3 dishwasher increment"
+  unit_of_measurement: "kWh"
+
+
+# CONNECTION FAILED
 - platform: mqtt
   state_topic: "sensor/foyer/connection_failed"
   name: "Foyer connection failed"
 
 
 #SQLITE
+# MAIN
 - platform: sql
-  scan_interval: 3600
   queries:
     - name: l1 daily con
       query: >
@@ -68,7 +93,6 @@
       unit_of_measurement: "kWh"
 
 - platform: sql
-  scan_interval: 3600
   queries:
     - name: l2 daily con
       query: >
@@ -77,7 +101,6 @@
       unit_of_measurement: "kWh"
 
 - platform: sql
-  scan_interval: 3600
   queries:
     - name: l3 daily con
       query: >
@@ -85,8 +108,32 @@
       column: 'state'
       unit_of_measurement: "kWh"
 
+# APPLIANCES
 - platform: sql
-  scan_interval: 3600
+  queries:
+    - name: l1 oven sum
+      query: >
+        SELECT round(sum(state/100),2) as state FROM states WHERE entity_id = "sensor.foyer_l1_oven_increment" and date(last_updated) = date("now");
+      column: 'state'
+      unit_of_measurement: "kWh"
+
+- platform: sql
+  queries:
+    - name: l2 refrigerator sum
+      query: >
+        SELECT round(sum(state/100),2) as state FROM states WHERE entity_id = "sensor.foyer_l2_refrigerator_increment" and date(last_updated) = date("now");
+      column: 'state'
+      unit_of_measurement: "kWh"
+
+- platform: sql
+  queries:
+    - name: l3 dishwasher sum
+      query: >
+        SELECT round(sum(state/100),2) as state FROM states WHERE entity_id = "sensor.foyer_l3_dishwasher_increment" and date(last_updated) = date("now");
+      column: 'state'
+      unit_of_measurement: "kWh"
+
+- platform: sql
   queries:
     - name: sum daily con
       query: >
