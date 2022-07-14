@@ -7,9 +7,6 @@ default_measurement : state
 
 include:
   entities:
-    - sensor.foyer_l1_consumption_increment
-    - sensor.foyer_l2_consumption_increment
-    - sensor.foyer_l3_consumption_increment
     - sensor.technical_exter_liters
     - sensor.technical_inter_liters
     - sensor.foyer_temperature
@@ -40,7 +37,13 @@ include:
     - sensor.loft_humidity
     - sensor.pool_temperature
     - sensor.pool_outside
-
+    
     - sensor.foyer_l1_power
     - sensor.foyer_l2_power
     - sensor.foyer_l3_power
+    - sensor.foyer_l1_oven_power
+    - sensor.foyer_l2_refrigerator_power
+    - sensor.foyer_l3_dishwasher_power
+    - sensor.foyer_l1_oven_increment
+    - sensor.foyer_l2_refrigerator_increment
+    - sensor.foyer_l3_dishwasher_increment
