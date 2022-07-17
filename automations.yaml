@@ -41,6 +41,11 @@
   - service: telegram_bot.send_message
     data:
       message: Internal water valve was {{states.sensor.technical_valve1_state.state}}
+  - service: notify.notify
+    data:
+      title: Voda
+      message: Vnútorný ventil sa {% if is_state("sensor.technical_valve1_state",
+        "open") -%} otvoril {%- else -%} zatvoril {%- endif %}
   mode: single
 - id: '1623784004873'
   alias: External water valve
@@ -53,6 +58,11 @@
   - service: telegram_bot.send_message
     data:
       message: External water valve was {{states.sensor.technical_valve2_state.state}}
+  - service: notify.notify
+    data:
+      title: Voda
+      message: Vonkajší ventil sa {% if is_state("sensor.technical_valve2_state",
+        "open") -%} otvoril {%- else -%} zatvoril {%- endif %}
   mode: single
 - id: '1631712863035'
   alias: Homeassistant reboot
@@ -387,4 +397,64 @@
       entity_id:
       - sensor.external_water_daily_3
       - sensor.internal_water_daily_3
+  mode: single
+- id: '1658036408570'
+  alias: Terrace opened warning
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 578684e38423a2e256e39185300b3954
+    entity_id: binary_sensor.terrace_door_contact
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      title: Terasa
+      message: Terasa je otvorená viac ako 10min.
+  mode: single
+- id: '1658036709662'
+  alias: Door opened warning
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: f3b591188c0982968eb928caa3c31180
+    entity_id: binary_sensor.foyer_door_contact
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      message: Dvere sú otvorené viac ako 10min.
+      title: Vchodové dvere
+  mode: single
+- id: '1658072821343'
+  alias: Dishwasher_status
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.dishwasher_status
+    from: 'On'
+    to: 'Off'
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      title: Umývačka
+      message: Riadik sa umyl. Otvoríš ma?
   mode: single
