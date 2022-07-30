@@ -16,14 +16,39 @@
     dishwasher_status:
       friendly_name: "Dishwasher Status"
       value_template: >-
-        {% if states("sensor.foyer_l3_dishwasher_power")|float <= 2 %}
+        {% if states("sensor.foyer_l3_dishwasher_power")|float <= 8 %}
           Off
         {% else %}
           On
         {% endif %}
       icon_template: >-
-        {% if states("sensor.foyer_l3_dishwasher_power")|float <= 2 %}
+        {% if states("sensor.foyer_l3_dishwasher_power")|float <= 8 %}
           mdi:dishwasher-off
         {% else %}
           mdi:dishwasher
         {% endif %}
+
+    last_shower_time:
+      friendly_name: "Last shower time"
+      value_template: '{{ as_timestamp(states.sensor.last_shower_duration.last_updated) | int | timestamp_custom("%H:%M on %a %-d %b") }}'
+
+    boiler_status:
+      friendly_name: "Boiler status"
+      value_template: >
+        {% set sc = states('sensor.boiler_service_code_number') %}
+        {% if sc == '200' %} CH active
+        {% elif sc == '201' %} HW active
+        {% elif sc == '202' %} CH anti cycle
+        {% elif sc == '203' %} Standby
+        {% elif sc == '204' %} CH cooling
+        {% elif sc == '208' %} Service test
+        {% elif sc == '265' %} Low CH load
+        {% elif sc == '268' %} Component test
+        {% elif sc == '270' %} Power up
+        {% elif sc == '283' %} Burner start
+        {% elif sc == '284' %} Ignition
+        {% elif sc == '305' %} HW anti cycle
+        {% elif sc == '357' %} Air purge
+        {% elif sc == '358' %} Valve kick
+        {% else %} {{ sc }}
+        {% endif %}      
