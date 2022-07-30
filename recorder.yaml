@@ -19,5 +19,40 @@ exclude:
     - sensor.komfovent_shedule
     - sensor.komfovent_specific_power_spi
     - sensor.komfovent_supply_flow
+    # BUDERUS BOILER
+    - binary_sensor.system_ntp_status
+    - sensor.ems_esp_status
+    - sensor.system_free_memory
+    - sensor.system_mqtt_fails
+    - sensor.system_rx_fails
+    - sensor.system_rx_received
+    - sensor.system_tx_fails
+    - sensor.system_tx_reads
+    - sensor.system_tx_writes
+    - sensor.system_uptime
+    - sensor.system_uptime_sec
+    - sensor.system_wifi_rssi
+    - sensor.system_wifi_strength
+
+    - sensor.thermostat_damped_outdoor_temperature
+    - sensor.thermostat_date_time
+    - sensor.thermostat_dhw_circuit_1_extra
+    - sensor.thermostat_floor_drying
+    - sensor.thermostat_floor_drying_temperature
+    - sensor.thermostat_hc1_current_room_influence
+    - sensor.thermostat_hc1_current_room_temperature
+    - sensor.thermostat_hc1_mode_type
+    - sensor.thermostat_hc1_summer_mode
+    - sensor.thermostat_hc1_target_flow_temperature
+
+    - binary_sensor.boiler_dhw_3way_valve_active
+    - binary_sensor.boiler_dhw_active
+    - sensor.boiler_dhw_active_time
+    - sensor.boiler_dhw_charging_type
+    - sensor.boiler_last_error_code
+    - sensor.boiler_total_uba_operating_time
+    - sensor.boiler_total_burner_operating_time
+    - sensor.boiler_total_heat_operating_time
+
   event_types:
     # - call_service+ ;
