@@ -29,6 +29,8 @@ frontend:
   
 # media_player: !include_dir_merge_list media
 modbus: !include komfovent.yaml
+mqtt: !include mqtt.yaml
+
 
 camera: !include_dir_merge_list cameras
 

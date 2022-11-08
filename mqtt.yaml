@@ -1,0 +1,394 @@
+sensor:  
+
+# --------------------BLINDS-----------------------------
+# --------------------BLINDS-----------------------------
+# --------------------BLINDS-----------------------------
+  - name: "Blind all"
+    force_update: true
+    state_topic: "sensor/blind/all"
+
+  - name: "Blind calibration"
+    force_update: true
+    state_topic: "sensor/blind/calibration"
+
+  - name: "Blind living position"
+    force_update: true
+    state_topic: "sensor/blind/living-pos"
+
+  - name: "Blind kitchen position"
+    force_update: true
+    state_topic: "sensor/blind/kitchen-pos"
+
+  - name: "Blind terrace position"
+    force_update: true
+    state_topic: "sensor/blind/terrace-pos"
+
+  - name: "Blind bed position"
+    force_update: true
+    state_topic: "sensor/blind/bed-pos"
+
+  - name: "Blind office position"
+    force_update: true
+    state_topic: "sensor/blind/office-pos"
+
+  - name: "Blind child1 position"
+    force_update: true
+    state_topic: "sensor/blind/child1-pos"
+
+  - name: "Blind child2 position"
+    force_update: true
+    state_topic: "sensor/blind/child2-pos"
+
+  - name: "Blind child3 position"
+    force_update: true
+    state_topic: "sensor/blind/child3-pos"
+
+  - name: "Blind living tilt"
+    force_update: true
+    state_topic: "sensor/blind/living-tilt"
+
+  - name: "Blind kitchen tilt"
+    force_update: true
+    state_topic: "sensor/blind/kitchen-tilt"
+
+  - name: "Blind terrace tilt"
+    force_update: true
+    state_topic: "sensor/blind/terrace-tilt"
+
+  - name: "Blind bed tilt"
+    force_update: true
+    state_topic: "sensor/blind/bed-tilt"
+
+  - name: "Blind office tilt"
+    force_update: true
+    state_topic: "sensor/blind/office-tilt"
+
+  - name: "Blind child1 tilt"
+    force_update: true
+    state_topic: "sensor/blind/child1-tilt"
+
+  - name: "Blind child2 tilt"
+    force_update: true
+    state_topic: "sensor/blind/child2-tilt"
+
+  - name: "Blind child3 tilt"
+    force_update: true
+    state_topic: "sensor/blind/child3-tilt"
+
+  - name: "Blind mode"
+    force_update: true
+    state_topic: "sensor/blind/mode"
+
+  # --------------------POOL-----------------------------   
+  # --------------------POOL-----------------------------   
+  # --------------------POOL-----------------------------   
+  - name: "Pool filter state"
+    force_update: true
+    state_topic: "sensor/pool/filter"
+
+  - name: "Light filter state"
+    force_update: true
+    state_topic: "sensor/pool/light"
+
+  - name: "Ph pool state"
+    force_update: true
+    state_topic: "sensor/pool/ph"
+
+  # --------------------TEMPERATURE-----------------------------
+  # --------------------TEMPERATURE-----------------------------
+  # --------------------TEMPERATURE-----------------------------
+
+  ##################  FOYER ############################
+  - name: "Foyer temperature"
+    state_topic: "sensor/foyer/temperature"
+    unit_of_measurement: "°C"
+
+  - name: "Foyer humidity"
+    state_topic: "sensor/foyer/humidity"
+    unit_of_measurement: "%"
+
+  ##################  CHILD1 ############################
+  - name: "Child1 temperature"
+    state_topic: "sensor/child1/temperature"
+    unit_of_measurement: "°C"
+
+  - name: "Child1 humidity"
+    state_topic: "sensor/child1/humidity"
+    unit_of_measurement: "%"
+
+  ##################  CHILD2 ############################
+  - name: "Child2 temperature"
+    state_topic: "sensor/child2/temperature"
+    unit_of_measurement: "°C"
+
+  - name: "Child2 humidity"
+    state_topic: "sensor/child2/humidity"
+    unit_of_measurement: "%"
+
+  ##################  BATH ############################
+  - name: "Bath temperature"
+    state_topic: "sensor/bath/temperature"
+    unit_of_measurement: "°C"
+
+  - name: "Bath humidity"
+    state_topic: "sensor/bath/humidity"
+    unit_of_measurement: "%"
+
+  ##################  Technical ############################
+  - name: "Technical temperature"
+    state_topic: "sensor/technical/temperature1"
+    unit_of_measurement: "°C"
+
+  - name: "Technical humidity"
+    state_topic: "sensor/technical/humidity"
+    unit_of_measurement: "%"
+
+  ##################  Hall ############################
+  - name: "Hall temperature"
+    state_topic: "sensor/hall/temperature"
+    unit_of_measurement: "°C"
+
+  - name: "Hall humidity"
+    state_topic: "sensor/hall/humidity"
+    unit_of_measurement: "%"
+
+
+  ##################  Child3 ############################
+  - name: "Child3 temperature"
+    state_topic: "sensor/child3/temperature"
+    unit_of_measurement: "°C"
+
+  - name: "Child3 humidity"
+    state_topic: "sensor/child3/humidity"
+    unit_of_measurement: "%"
+
+  ##################  Bed ############################
+  - name: "Bed temperature"
+    state_topic: "sensor/bed/temperature"
+    unit_of_measurement: "°C"
+
+  - name: "Bed humidity"
+    state_topic: "sensor/bed/humidity"
+    unit_of_measurement: "%"
+
+  ##################  Ofiice ############################
+  - name: "Office temperature"
+    state_topic: "sensor/office/temperature"
+    unit_of_measurement: "°C"
+
+  - name: "Office humidity"
+    state_topic: "sensor/office/humidity"
+    unit_of_measurement: "%"
+
+  ##################  Larder ############################
+  - name: "Larder temperature"
+    state_topic: "sensor/larder/temperature"
+    unit_of_measurement: "°C"
+
+  - name: "Larder humidity"
+    state_topic: "sensor/larder/humidity"
+    unit_of_measurement: "%"
+
+  ##################  Kitchen ############################
+  - name: "Kitchen temperature"
+    state_topic: "sensor/kitchen/temperature"
+    unit_of_measurement: "°C"
+
+  - name: "Kitchen humidity"
+    state_topic: "sensor/kitchen/humidity"
+    unit_of_measurement: "%"
+
+  ##################  Living ############################
+  - name: "Living temperature"
+    state_topic: "sensor/living/temperature"
+    unit_of_measurement: "°C"
+
+  - name: "Living humidity"
+    state_topic: "sensor/living/humidity"
+    unit_of_measurement: "%"
+
+  ##################  Loft ############################
+  - name: "Loft temperature"
+    state_topic: "sensor/loft/temperature"
+    unit_of_measurement: "°C"
+    
+  - name: "Loft humidity"
+    state_topic: "sensor/loft/humidity"
+    unit_of_measurement: "%"
+    
+    ##################  POOL ############################
+  - name: "Pool temperature"
+    state_topic: "sensor/pool/temperature"
+    unit_of_measurement: "°C"
+
+    ##################  POOL OUTSIDE ####################
+  - name: "Pool temperature outside"
+    state_topic: "sensor/pool/outside_temperature"
+    unit_of_measurement: "°C"
+
+  # --------------------WATER-----------------------------
+  # --------------------WATER-----------------------------
+  # --------------------WATER-----------------------------
+
+  - name: "Technical inter liters"
+    state_topic: "sensor/technical/lit_inter"
+    unit_of_measurement: "l"
+
+  - name: "Technical exter liters"
+    state_topic: "sensor/technical/lit_exter"
+    unit_of_measurement: "l"
+    
+  - name: "Technical valve1 state"
+    force_update: true
+    state_topic: "sensor/technical/valve_inter"
+
+  - name: "Technical valve2 state"
+    force_update: true
+    state_topic: "sensor/technical/valve_exter"
+
+  - name: "Technical valve error"
+    force_update: true
+    state_topic: "sensor/technical/valve_error"
+
+  - name: "Technical connection failed"
+    state_topic: "sensor/technical/connection_failed"
+
+  - name: "Technical internal max set"
+    state_topic: "sensor/technical/set_internal_max"
+
+  - name: "Technical external max set"
+    state_topic: "sensor/technical/set_external_max"
+
+  - name: "Technical internal max"
+    state_topic: "sensor/technical/internal_max"
+
+  - name: "Technical external max"
+    state_topic: "sensor/technical/external_max"
+
+
+
+
+# --------------------POWER-----------------------------
+# --------------------POWER-----------------------------
+# --------------------POWER-----------------------------
+# --------------------POWER-----------------------------
+
+  - name: "Foyer L1 power"
+    force_update: false
+    state_topic: "sensor/foyer/L1_power"
+    unit_of_measurement: "W"
+
+  - name: "Foyer L2 power"
+    force_update: false
+    state_topic: "sensor/foyer/L2_power"
+    unit_of_measurement: "W"
+
+  - name: "Foyer L3 power"
+    force_update: false
+    state_topic: "sensor/foyer/L3_power"
+    unit_of_measurement: "W"
+
+  # APPLIANCES POWER
+  - name: "Foyer L1 oven power"
+    force_update: false 
+    state_topic: "sensor/foyer/L1_oven"
+    unit_of_measurement: "W"
+
+  - name: "Foyer L2 refrigerator power"
+    force_update: false 
+    state_topic: "sensor/foyer/L2_refrigerator"
+    unit_of_measurement: "W"
+
+  - name: "Foyer L3 dishwasher power"
+    force_update: false 
+    state_topic: "sensor/foyer/L3_dishwasher"
+    unit_of_measurement: "W"
+
+
+    # INCREMENT
+  - name: "Foyer L1 consumption increment"
+    force_update: false 
+    state_topic: "sensor/foyer/L1_con_inc"
+    unit_of_measurement: "kWh"
+
+  - name: "Foyer L2 consumption increment"
+    force_update: true 
+    state_topic: "sensor/foyer/L2_con_inc"
+    unit_of_measurement: "kWh"
+
+  - name: "Foyer L3 consumption increment"
+    force_update: true 
+    state_topic: "sensor/foyer/L3_con_inc"
+    unit_of_measurement: "kWh"
+
+  # INCREMENT APPLIANCES
+  - name: "Foyer L1 oven increment"
+    force_update: true 
+    state_topic: "sensor/foyer/L1_oven_inc"
+    unit_of_measurement: "kWh"
+
+  - name: "Foyer L2 refrigerator increment"
+    force_update: true 
+    state_topic: "sensor/foyer/L2_refrigerator_inc"
+    unit_of_measurement: "kWh"
+
+  - name: "Foyer L3 dishwasher increment"
+    force_update: true 
+    state_topic: "sensor/foyer/L3_dishwasher_inc"
+    unit_of_measurement: "kWh"
+
+
+  # CONNECTION FAILED
+  - name: "Foyer connection failed"
+    state_topic: "sensor/foyer/connection_failed"
+
+
+
+
+
+
+
+
+#####################################################
+
+# --------------------SWITCH-----------------------------
+
+
+#####################################################
+
+
+switch:
+  - name: technical_valve1
+    state_topic: "command/technical/waterflow"
+    command_topic: "command/technical/waterflow"
+    payload_on: "1" #open valve 1
+    payload_off: "2" #close valve 1
+    retain: false
+    
+  - name: technical_valve2
+    state_topic: "command/technical/waterflow"
+    command_topic: "command/technical/waterflow"
+    payload_on: "3" #open valve 2
+    payload_off: "4" #close valve 2
+    retain: false
+    
+  - name: pool_filter
+    state_topic: "command/pool/filter"
+    command_topic: "command/pool/filter"
+    payload_on: "1" 
+    payload_off: "0" 
+    retain: false
+    
+  - name: pool_light
+    state_topic: "command/pool/light"
+    command_topic: "command/pool/light"
+    payload_on: "1" 
+    payload_off: "0" 
+    retain: false
+  
+  - name: pool_ph
+    state_topic: "command/pool/ph"
+    command_topic: "command/pool/ph"
+    payload_on: "1" 
+    payload_off: "0" 
+    retain: false
