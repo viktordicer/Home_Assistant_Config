@@ -94,6 +94,14 @@ sensor:
     force_update: true
     state_topic: "sensor/pool/ph"
 
+  - name: "Batery heating state"
+    force_update: true
+    state_topic: "sensor/pool/batery"
+
+  - name: "Pool light room"
+    force_update: true
+    state_topic: "sensor/pool/light_room"
+
   # --------------------TEMPERATURE-----------------------------
   # --------------------TEMPERATURE-----------------------------
   # --------------------TEMPERATURE-----------------------------
@@ -101,129 +109,176 @@ sensor:
   ##################  FOYER ############################
   - name: "Foyer temperature"
     state_topic: "sensor/foyer/temperature"
+    state_class: measurement
+    device_class: temperature
     unit_of_measurement: "°C"
 
   - name: "Foyer humidity"
     state_topic: "sensor/foyer/humidity"
+    state_class: measurement
+    device_class: humidity
     unit_of_measurement: "%"
 
   ##################  CHILD1 ############################
   - name: "Child1 temperature"
     state_topic: "sensor/child1/temperature"
+    state_class: measurement
+    device_class: temperature
     unit_of_measurement: "°C"
 
   - name: "Child1 humidity"
     state_topic: "sensor/child1/humidity"
+    state_class: measurement
+    device_class: humidity
     unit_of_measurement: "%"
 
   ##################  CHILD2 ############################
   - name: "Child2 temperature"
     state_topic: "sensor/child2/temperature"
+    state_class: measurement
+    device_class: temperature
     unit_of_measurement: "°C"
 
   - name: "Child2 humidity"
     state_topic: "sensor/child2/humidity"
+    state_class: measurement
+    device_class: humidity
     unit_of_measurement: "%"
 
   ##################  BATH ############################
   - name: "Bath temperature"
     state_topic: "sensor/bath/temperature"
+    state_class: measurement
+    device_class: temperature
     unit_of_measurement: "°C"
 
   - name: "Bath humidity"
     state_topic: "sensor/bath/humidity"
+    state_class: measurement
+    device_class: humidity
     unit_of_measurement: "%"
 
   ##################  Technical ############################
-  - name: "Technical temperature"
-    state_topic: "sensor/technical/temperature1"
-    unit_of_measurement: "°C"
-
-  - name: "Technical humidity"
-    state_topic: "sensor/technical/humidity"
-    unit_of_measurement: "%"
+  # ESP HOME INTEGRATION
 
   ##################  Hall ############################
   - name: "Hall temperature"
     state_topic: "sensor/hall/temperature"
+    state_class: measurement
+    device_class: temperature
+    
     unit_of_measurement: "°C"
 
   - name: "Hall humidity"
     state_topic: "sensor/hall/humidity"
+    state_class: measurement
+    device_class: humidity
     unit_of_measurement: "%"
 
 
   ##################  Child3 ############################
   - name: "Child3 temperature"
     state_topic: "sensor/child3/temperature"
+    state_class: measurement
+    device_class: temperature
     unit_of_measurement: "°C"
 
   - name: "Child3 humidity"
     state_topic: "sensor/child3/humidity"
+    state_class: measurement
+    device_class: humidity
     unit_of_measurement: "%"
 
   ##################  Bed ############################
   - name: "Bed temperature"
     state_topic: "sensor/bed/temperature"
+    state_class: measurement
+    device_class: temperature
     unit_of_measurement: "°C"
 
   - name: "Bed humidity"
     state_topic: "sensor/bed/humidity"
+    state_class: measurement
+    device_class: humidity
     unit_of_measurement: "%"
 
   ##################  Ofiice ############################
   - name: "Office temperature"
     state_topic: "sensor/office/temperature"
+    state_class: measurement
+    device_class: temperature
     unit_of_measurement: "°C"
 
   - name: "Office humidity"
     state_topic: "sensor/office/humidity"
+    state_class: measurement
+    device_class: humidity
     unit_of_measurement: "%"
 
   ##################  Larder ############################
   - name: "Larder temperature"
     state_topic: "sensor/larder/temperature"
+    state_class: measurement
+    device_class: temperature
     unit_of_measurement: "°C"
 
   - name: "Larder humidity"
     state_topic: "sensor/larder/humidity"
+    state_class: measurement
+    device_class: humidity
     unit_of_measurement: "%"
 
   ##################  Kitchen ############################
   - name: "Kitchen temperature"
     state_topic: "sensor/kitchen/temperature"
+    state_class: measurement
+    device_class: temperature
     unit_of_measurement: "°C"
 
   - name: "Kitchen humidity"
     state_topic: "sensor/kitchen/humidity"
+    state_class: measurement
+    device_class: humidity
     unit_of_measurement: "%"
 
   ##################  Living ############################
   - name: "Living temperature"
     state_topic: "sensor/living/temperature"
+    state_class: measurement
+    device_class: temperature
     unit_of_measurement: "°C"
 
   - name: "Living humidity"
     state_topic: "sensor/living/humidity"
+    state_class: measurement
+    device_class: humidity
     unit_of_measurement: "%"
 
   ##################  Loft ############################
   - name: "Loft temperature"
     state_topic: "sensor/loft/temperature"
+    state_class: measurement
+    device_class: temperature
     unit_of_measurement: "°C"
     
   - name: "Loft humidity"
     state_topic: "sensor/loft/humidity"
+    state_class: measurement
+    device_class: humidity
     unit_of_measurement: "%"
     
     ##################  POOL ############################
   - name: "Pool temperature"
     state_topic: "sensor/pool/temperature"
+    state_class: measurement
+    device_class: temperature
     unit_of_measurement: "°C"
 
     ##################  POOL OUTSIDE ####################
   - name: "Pool temperature outside"
     state_topic: "sensor/pool/outside_temperature"
+    state_class: measurement
+    device_class: temperature
     unit_of_measurement: "°C"
 
   # --------------------WATER-----------------------------
@@ -232,11 +287,25 @@ sensor:
 
   - name: "Technical inter liters"
     state_topic: "sensor/technical/lit_inter"
-    unit_of_measurement: "l"
+    device_class: water
+    unit_of_measurement: "L"
+
+  - name: "Technical inter total liters"
+    state_topic: "sensor/technical/lit_inter_total"
+    device_class: water
+    state_class: total_increasing
+    unit_of_measurement: "m³"
 
   - name: "Technical exter liters"
     state_topic: "sensor/technical/lit_exter"
-    unit_of_measurement: "l"
+    device_class: water
+    unit_of_measurement: "L"
+
+  - name: "Technical exter total liters"
+    state_topic: "sensor/technical/lit_exter_total"
+    device_class: water
+    state_class: total_increasing
+    unit_of_measurement: "m³"
     
   - name: "Technical valve1 state"
     force_update: true
@@ -275,72 +344,146 @@ sensor:
 
   - name: "Foyer L1 power"
     force_update: false
-    state_topic: "sensor/foyer/L1_power"
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.pL1}}"
+    device_class: power
+    state_class: measurement
     unit_of_measurement: "W"
 
   - name: "Foyer L2 power"
     force_update: false
-    state_topic: "sensor/foyer/L2_power"
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.pL2}}"
+    state_class: measurement
+    device_class: power
     unit_of_measurement: "W"
 
   - name: "Foyer L3 power"
     force_update: false
-    state_topic: "sensor/foyer/L3_power"
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.pL3}}"
+    state_class: measurement
+    device_class: power
     unit_of_measurement: "W"
 
   # APPLIANCES POWER
   - name: "Foyer L1 oven power"
     force_update: false 
-    state_topic: "sensor/foyer/L1_oven"
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.pL1_oven}}"
+    state_class: measurement
+    device_class: power
     unit_of_measurement: "W"
 
   - name: "Foyer L2 refrigerator power"
     force_update: false 
-    state_topic: "sensor/foyer/L2_refrigerator"
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.pL2_refri}}"
+    state_class: measurement
+    device_class: power
     unit_of_measurement: "W"
 
   - name: "Foyer L3 dishwasher power"
     force_update: false 
-    state_topic: "sensor/foyer/L3_dishwasher"
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.pL3_dish}}"
+    state_class: measurement
+    device_class: power
     unit_of_measurement: "W"
 
 
     # INCREMENT
   - name: "Foyer L1 consumption increment"
-    force_update: false 
-    state_topic: "sensor/foyer/L1_con_inc"
+    force_update: true 
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.L1_inc}}"
     unit_of_measurement: "kWh"
 
   - name: "Foyer L2 consumption increment"
     force_update: true 
-    state_topic: "sensor/foyer/L2_con_inc"
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.L2_inc}}"
     unit_of_measurement: "kWh"
 
   - name: "Foyer L3 consumption increment"
     force_update: true 
-    state_topic: "sensor/foyer/L3_con_inc"
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.L3_inc}}"
     unit_of_measurement: "kWh"
 
   # INCREMENT APPLIANCES
   - name: "Foyer L1 oven increment"
     force_update: true 
-    state_topic: "sensor/foyer/L1_oven_inc"
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.conOven}}"
     unit_of_measurement: "kWh"
 
   - name: "Foyer L2 refrigerator increment"
     force_update: true 
-    state_topic: "sensor/foyer/L2_refrigerator_inc"
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.conRefri}}"
     unit_of_measurement: "kWh"
 
   - name: "Foyer L3 dishwasher increment"
     force_update: true 
-    state_topic: "sensor/foyer/L3_dishwasher_inc"
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.conDish}}"
     unit_of_measurement: "kWh"
 
+    # TOTAL
+  - name: "Foyer L1 total"
+    force_update: false 
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.tL1}}"
+    state_class: total_increasing
+    device_class: energy
+    unit_of_measurement: "kWh"
+
+  - name: "Foyer L2 total"
+    force_update: false 
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.tL2}}"
+    state_class: total_increasing
+    device_class: energy
+    unit_of_measurement: "kWh"
+
+  - name: "Foyer L3 total"
+    force_update: false 
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.tL3}}"
+    state_class: total_increasing
+    device_class: energy
+    unit_of_measurement: "kWh"
+
+  # TOTAL APPLIANCES
+  - name: "Foyer L1 oven total"
+    force_update: false 
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.tOven}}"
+    state_class: total_increasing
+    device_class: energy
+    unit_of_measurement: "kWh"
+
+  - name: "Foyer L2 refrigerator total"
+    force_update: false 
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.tRefri}}"
+    state_class: total_increasing
+    device_class: energy
+    unit_of_measurement: "kWh"
+
+  - name: "Foyer L3 dishwasher total"
+    force_update: false 
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.tDish}}"
+    state_class: total_increasing
+    device_class: energy
+    unit_of_measurement: "kWh"
 
   # CONNECTION FAILED
   - name: "Foyer connection failed"
-    state_topic: "sensor/foyer/connection_failed"
+    state_topic: "sensor/foyer/power"
+    value_template: "{{value_json.con_failed}}"
 
 
 
@@ -389,6 +532,20 @@ switch:
   - name: pool_ph
     state_topic: "command/pool/ph"
     command_topic: "command/pool/ph"
+    payload_on: "1" 
+    payload_off: "0" 
+    retain: false
+    
+  - name: pool_batery
+    state_topic: "command/pool/batery"
+    command_topic: "command/pool/batery"
+    payload_on: "1" 
+    payload_off: "0" 
+    retain: false
+
+  - name: pool_light_room
+    state_topic: "command/pool/light_room"
+    command_topic: "command/pool/light_room"
     payload_on: "1" 
     payload_off: "0" 
     retain: false

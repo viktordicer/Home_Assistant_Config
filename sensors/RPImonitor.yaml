@@ -12,4 +12,3 @@
     - type: memory_free
     - type: processor_temperature
     - type: processor_use
-- platform: version

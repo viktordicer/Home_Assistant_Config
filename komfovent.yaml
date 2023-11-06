@@ -3,49 +3,83 @@
   host: 192.168.0.119
   port: 502
   switches:
-    - name: "Komfovent Auto Mode"
-      slave: 1
-      address: 3
-      command_on: 1
-      command_off: 0
     - name: "Komfovent Power"
-      slave: 1
+      #slave: 1
       address: 0
       command_on: 1
       command_off: 0  
+      verify:
     - name: "Komfovent Eco Mode"
-      slave: 1
+      #slave: 1
       address: 2
       command_on: 1
       command_off: 0
+      verify:
+    - name: "Komfovent Auto Mode"
+      #slave: 1
+      address: 3
+      command_on: 1
+      command_off: 0
+      verify:
+    
+    - name: "Komfovent Eco Free Cooling"
+      # slave: 1
+      address: 201
+      command_on: 1
+      command_off: 0  
+      verify:
+
+    - name: "Komfovent Eco Heater Blocking"
+      # slave: 1
+      address: 202
+      command_on: 1
+      command_off: 0  
+      verify:
+    - name: "Komfovent Eco Cooler Blocking"
+      # slave: 1
+      address: 203
+      command_on: 1
+      command_off: 0  
+      verify:
+    - name: "Komfovent Eco Constant Heat Recovery"
+      # slave: 1
+      address: 216
+      command_on: 1
+      command_off: 0  
+      verify:
   sensors:
     - name: "Komfovent Power"
-      scan_interval: 240
+      scan_interval: 30
       address: 0
       input_type: holding
+      data_type: uint16
 
     - name: "Komfovent Eco"
-      scan_interval: 240
+      scan_interval: 30
       address: 2
       input_type: holding
+      data_type: uint16
 
     - name: "Komfovent Auto"
-      scan_interval: 240
+      scan_interval: 30
       address: 3
       input_type: holding
 
     - name: "Komfovent Mode"
-      scan_interval: 240
+      scan_interval: 30
       address: 4
       input_type: holding
+      data_type: uint16
 
     - name: "Komfovent Schedule"
-      scan_interval: 3600
+      scan_interval: 30
       address: 5
       input_type: holding
+      data_type: uint16
+
 # TEMPERATURE
     - name: "Komfovent Supply temperature 'C"
-      scan_interval: 480
+      scan_interval: 30
       address: 901
       input_type: holding
       unit_of_measurement: °C        
@@ -53,7 +87,7 @@
       precision: 1
 
     - name: "Komfovent Extract temperature 'C"
-      scan_interval: 480
+      scan_interval: 30
       address: 902
       input_type: holding
       unit_of_measurement: °C        
@@ -61,7 +95,7 @@
       precision: 1
 
     - name: "Komfovent Outdoor temperature 'C"
-      scan_interval: 480
+      scan_interval: 30
       address: 903
       input_type: holding
       unit_of_measurement: °C        
@@ -69,18 +103,18 @@
       precision: 1
         
     - name: "Komfovent Supply Flow '%"
-      scan_interval: 120
+      scan_interval: 30
       address: 905
-      count: 2
+      #count: 2
       unit_of_measurement: '%'
       precision: 1
       input_type: holding
       data_type: uint32
 
     - name: "Komfovent Extract Flow '%"
-      scan_interval: 120
+      scan_interval: 30
       address: 907
-      count: 2
+      #count: 2
       input_type: holding
       unit_of_measurement: '%'
       precision: 1
@@ -88,23 +122,151 @@
 
 
     - name: "Komfovent Filter Impurity, %"
-      scan_interval: 7200
+      scan_interval: 600
       address: 916
       input_type: holding
+
+#SET SENSORS
+    #Away
+    - name: "Komfovent Away Supply flow"
+      scan_interval: 30
+      address: 99
+      input_type: holding
+      data_type: uint32
+      unit_of_measurement: '%'
+      
+    - name: "Komfovent Away Extract flow"
+      scan_interval: 30
+      address: 101
+      input_type: holding
+      data_type: uint32
+      unit_of_measurement: '%'
+      
+    - name: "Komfovent Away Setpoint"
+      scan_interval: 30
+      address: 103
+      input_type: holding
+      data_type: int16
+      unit_of_measurement: '°C'
+      scale: 0.1
+      precision: 1
+      device_class: temperature
+      state_class: measurement
+      
+    #Normal
+    - name: "Komfovent Normal Supply flow"
+      scan_interval: 30
+      address: 105
+      input_type: holding
+      data_type: uint32
+      unit_of_measurement: '%'
+      
+    - name: "Komfovent Normal Extract flow"
+      scan_interval: 30
+      address: 107
+      input_type: holding
+      data_type: uint32
+      unit_of_measurement: '%'
+      
+    - name: "Komfovent Normal Setpoint"
+      scan_interval: 30
+      address: 109
+      input_type: holding
+      data_type: int16
+      unit_of_measurement: '°C'
+      scale: 0.1
+      precision: 1
+      device_class: temperature
+      state_class: measurement
+    
+    #Intensive
+    - name: "Komfovent Intensive Supply flow"
+      scan_interval: 30
+      address: 111
+      input_type: holding
+      data_type: uint32
+      unit_of_measurement: '%'
+      
+    - name: "Komfovent Intensive Extract flow"
+      scan_interval: 30
+      address: 113
+      input_type: holding
+      data_type: uint32
+      unit_of_measurement: '%'
+      
+    - name: "Komfovent Intensive Setpoint"
+      scan_interval: 30
+      address: 115
+      input_type: holding
+      data_type: int16
+      unit_of_measurement: '°C'
+      scale: 0.1
+      precision: 1
+      device_class: temperature
+      state_class: measurement
+
+    #Boost
+    - name: "Komfovent Boost Supply flow"
+      scan_interval: 30
+      address: 117
+      input_type: holding
+      data_type: uint32
+      unit_of_measurement: '%'
+      
+    - name: "Komfovent Boost Extract flow"
+      scan_interval: 30
+      address: 119
+      input_type: holding
+      data_type: uint32
+      unit_of_measurement: '%'
+      
+    - name: "Komfovent Boost Setpoint"
+      scan_interval: 30
+      address: 121
+      input_type: holding
+      data_type: int16
+      unit_of_measurement: '°C'
+      scale: 0.1
+      precision: 1
+      device_class: temperature
+      state_class: measurement
+
+    #ECO
+    - name: Komfovent Eco min temperature
+      address: 199
+      input_type: holding
+      data_type: int16
+      unit_of_measurement: °C
+      scale: 0.1
+      precision: 1
+      device_class: temperature
+      state_class: measurement
+      scan_interval: 30
+
+    - name: Komfovent Eco max temperature
+      address: 200
+      input_type: holding
+      data_type: int16
+      unit_of_measurement: °C
+      scale: 0.1
+      precision: 1
+      device_class: temperature
+      state_class: measurement
+      scan_interval: 30
 
 
 # POWER
     - name: "Komfovent Heating power, W"
-      scan_interval: 7200
+      scan_interval: 43200
       address: 912
       input_type: holding
       data_type: uint32
 
     - name: "Komfovent Heating consumption day, kWh"
-      scan_interval: 7200
+      scan_interval: 1200
       address: 932
       input_type: holding
-      count: 2
+      #count: 2
       precision: 2
       scale: 0.001
       data_type: uint32
@@ -113,22 +275,22 @@
       scan_interval: 43200
       address: 934
       input_type: holding
-      count: 2
+      #count: 2
       precision: 2
       scale: 0.001
       data_type: uint32
 
     - name: "Komfovent Heating consumption total, kWh"
-      scan_interval: 43200
+      scan_interval: 600
       address: 936
       input_type: holding
-      count: 2
+      #count: 2
       precision: 2
       scale: 0.001
       data_type: uint32
 
     - name: "Komfovent Power consumption, W"
-      scan_interval: 300
+      scan_interval: 30
       address: 920
       input_type: holding
       data_type: uint16
@@ -137,7 +299,7 @@
       scan_interval: 3600
       address: 926
       input_type: holding
-      count: 2
+      #count: 2
       precision: 2
       scale: 0.001
       data_type: uint32
@@ -146,25 +308,28 @@
       scan_interval: 43200
       address: 928
       input_type: holding
-      count: 2
+      #count: 2
       precision: 2
       scale: 0.001
       data_type: uint32
 
     - name: "Komfovent Power consumption total, kWh"
-      scan_interval: 43200
+      scan_interval: 1200
       address: 930
       input_type: holding
-      count: 2
+      #count: 2
       precision: 2
       scale: 0.001
+      device_class: energy
+      state_class: total_increasing
+      unit_of_measurement: 'kWh'
       data_type: uint32
 
     - name: "Komfovent Heating Recovery Day, kWh"
       scan_interval: 43200
       address: 938
       input_type: holding
-      count: 2
+      #count: 2
       precision: 2
       scale: 0.001
       data_type: uint32
@@ -173,7 +338,7 @@
       scan_interval: 43200
       address: 940
       input_type: holding
-      count: 2
+      #count: 2
       precision: 2
       scale: 0.001
       data_type: uint32
@@ -182,34 +347,50 @@
       scan_interval: 43200
       address: 942
       input_type: holding
-      count: 2
+      #count: 2
       precision: 2
       scale: 0.001
       data_type: uint32
 
     - name: "Komfovent Heat Recovery, W"
-      scan_interval: 240
+      scan_interval: 30
       address: 922
       input_type: holding
       data_type: uint16
 
     - name: "Komfovent Heat exchanger efficiency, %"
-      scan_interval: 240
+      scan_interval: 30
       address: 923
       input_type: holding
       data_type: uint16
 
     - name: "Komfovent Energy saving, %"
-      scan_interval: 240
+      scan_interval: 30
       address: 924
       input_type: holding
       data_type: uint16
 
     - name: "Komfovent Specific power (SPI)"
-      scan_interval: 43200
+      scan_interval: 240
       address: 925
       input_type: holding
       scale: 0.001
       precision: 2
       data_type: uint16
-
+    
+    #STATUS
+    - name: Komfoment Status Alarm
+      scan_interval: 60
+      address: 957
+      input_type: holding
+      data_type: uint16
+    - name: Komfoment Status Heating
+      scan_interval: 60
+      address: 958
+      input_type: holding
+      data_type: uint16
+    - name: Komfoment Status Cooling
+      scan_interval: 60
+      address: 959
+      input_type: holding
+      data_type: uint16

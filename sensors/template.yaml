@@ -16,13 +16,13 @@
     dishwasher_status:
       friendly_name: "Dishwasher Status"
       value_template: >-
-        {% if states("sensor.foyer_l3_dishwasher_power")|float <= 8 %}
+        {% if states("sensor.foyer_l3_dishwasher_power")|float <= 20 %}
           Off
         {% else %}
           On
         {% endif %}
       icon_template: >-
-        {% if states("sensor.foyer_l3_dishwasher_power")|float <= 8 %}
+        {% if states("sensor.foyer_l3_dishwasher_power")|float <= 20 %}
           mdi:dishwasher-off
         {% else %}
           mdi:dishwasher

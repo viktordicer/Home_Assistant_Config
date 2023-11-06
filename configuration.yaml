@@ -4,10 +4,6 @@ default_config:
 
 sun:
 
-discovery:
-  ignore:
-    - enigma2
-
 tts:
   - platform: google_translate
 
@@ -31,8 +27,25 @@ frontend:
 modbus: !include komfovent.yaml
 mqtt: !include mqtt.yaml
 
+homeassistant:
+  allowlist_external_dirs:
+    - "/config/www/tmp"
+  media_dirs:
+    local: "/config/www/tmp_doorbell"
 
-camera: !include_dir_merge_list cameras
+    
+camera:   
+  - platform: local_file
+    file_path: /config/www/tmp_doorbell/doorbell_visitor.jpg
+    name: Doorbell Visitor
+
+  - platform: local_file
+    file_path: /config/www/tmp_doorbell/doorbell_person.jpg
+    name: Doorbell Person
+
+  - platform: local_file
+    file_path: /config/www/tmp_doorbell/doorbell_motion.jpg
+    name: Doorbell Motion
 
 telegram_bot:
   - platform: broadcast

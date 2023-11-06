@@ -1,27 +1,17 @@
-purge_keep_days: 20
+purge_keep_days: 30
+
 exclude:
   domains:
     - automation
+  entity_globs:
+    #KOMFOVENT
+    - sensor.komfovent_*
   entities:
-    - sensor.komfovent_auto
-    - sensor.komfovent_eco
-    - sensor.komfovent_energy_saving
-    - sensor.komfovent_extract_flow
-    - sensor.komfovent_heat_exchanger_efficiency
-    - sensor.komfovent_heat_recovery_w
-    - sensor.komfovent_heating_power_w
-    - sensor.komfovent_heating_recovery_day_kwh
-    - sensor.komfovent_heating_recovery_month_kwh
-    - sensor.komfovent_heating_recovery_total_kwh
-    - sensor.komfovent_mode
-    - sensor.komfovent_power
-    - sensor.komfovent_power_consumption_w
-    - sensor.komfovent_shedule
-    - sensor.komfovent_specific_power_spi
-    - sensor.komfovent_supply_flow
+
     # BUDERUS BOILER
     - binary_sensor.system_ntp_status
     - sensor.ems_esp_status
+    - sensor.system_max_alloc
     - sensor.system_free_memory
     - sensor.system_mqtt_fails
     - sensor.system_rx_fails
@@ -34,6 +24,8 @@ exclude:
     - sensor.system_wifi_rssi
     - sensor.system_wifi_strength
 
+    - sensor.ems_esp_shower_duration
+    - sensor.boiler_current_flow_temperature
     - sensor.thermostat_damped_outdoor_temperature
     - sensor.thermostat_date_time
     - sensor.thermostat_dhw_circuit_1_extra
@@ -44,7 +36,21 @@ exclude:
     - sensor.thermostat_hc1_mode_type
     - sensor.thermostat_hc1_summer_mode
     - sensor.thermostat_hc1_target_flow_temperature
+    - sensor.boiler_burner_set_power
+    - sensor.boiler_burner_stage_2_operating_time
+    - sensor.boiler_burner_starts
+    - sensor.boiler_dhw_current_intern_temperature
+    - sensor.boiler_dhw_current_tap_water_flow
+    - sensor.boiler_dhw_set_pump_power
+    - sensor.boiler_dhw_starts
+    - sensor.boiler_dhw_storage_extern_temperature
+    - sensor.boiler_dhw_type
+    - sensor.boiler_flame_current
+    - sensor.boiler_heating_pump_modulation
+    - sensor.boiler_maintenance_message
 
+    - sensor.boiler_burner_starts_heating
+    - sensor.boiler_dhw_set_temperature
     - binary_sensor.boiler_dhw_3way_valve_active
     - binary_sensor.boiler_dhw_active
     - sensor.boiler_dhw_active_time
@@ -53,6 +59,30 @@ exclude:
     - sensor.boiler_total_uba_operating_time
     - sensor.boiler_total_burner_operating_time
     - sensor.boiler_total_heat_operating_time
+    - binary_sensor.boiler_dhw_charging
+    - binary_sensor.boiler_dhw_recharging
+    - binary_sensor.boiler_dhw_temperature_ok
+    - binary_sensor.boiler_fan
+    - binary_sensor.boiler_gas
+    - binary_sensor.boiler_gas_stage_2
+    - binary_sensor.boiler_heating_active
+    - binary_sensor.boiler_heating_pump
+    - binary_sensor.boiler_ignition
+    - binary_sensor.boiler_oil_preheating
+    #SQL integration
+    - sensor.l1_daily_con
+    - sensor.l1_oven_sum
+    - sensor.l2_daily_con
+    - sensor.l2_refrigerator_sum
+    - sensor.l3_daily_con
+    - sensor.l3_dishwasher_sum
+    - sensor.sum_daily_con
+    - sensor.external_water_daily
+    - sensor.internal_water_daily
+
 
   event_types:
     # - call_service+ ;
+include:
+  entities:
+    - sensor.komfovent_power_consumption_total_kWh

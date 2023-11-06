@@ -18,7 +18,12 @@
 /esphome/.esphome
 /esphome/esp32-board
 /tts
+/image
+/dwains-dashboard
 /www/community
+/www/tmp
+/www/tmp_doorbell
+/themes
 *.pyc
 secrets.yaml
 home-assistant_v2.db.corrupt.2022-07-14T07:41:10.201928+00:00

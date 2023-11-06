@@ -1,0 +1,125 @@
+komfovent_eco_min_temp:
+  name: Eco min temp
+  min: 5
+  max: 40
+  step: 1
+  mode: box
+  unit_of_measurement: °C
+  icon: mdi:thermometer-low
+
+komfovent_eco_max_temp:
+  name: Eco max temp
+  min: 5
+  max: 40
+  step: 1
+  mode: box
+  unit_of_measurement: '°C'
+  icon: mdi:thermometer-high
+
+komfovent_away_supply_flow:
+  name: Away supply flow
+  min: 20
+  max: 100
+  step: 5
+  mode: box
+  unit_of_measurement: '%'
+  icon: mdi:fan
+
+komfovent_away_extract_flow:
+  name: Away extract flow
+  min: 20
+  max: 100
+  step: 5
+  mode: box
+  unit_of_measurement: '%'
+  icon: mdi:fan
+
+komfovent_away_setpoint:
+  name: Away setpoint
+  min: 0
+  max: 40
+  step: 0.5
+  mode: box
+  unit_of_measurement: '°C'
+  icon: mdi:thermometer-high
+
+komfovent_normal_supply_flow:
+  name: Normal supply flow
+  min: 20
+  max: 100
+  step: 5
+  mode: box
+  unit_of_measurement: '%'
+  icon: mdi:fan
+
+komfovent_normal_extract_flow:
+  name: Normal extract flow
+  min: 20
+  max: 100
+  step: 5
+  mode: box
+  unit_of_measurement: '%'
+  icon: mdi:fan
+
+komfovent_normal_setpoint:
+  name: Normal setpoint
+  min: 0
+  max: 40
+  step: 0.5
+  mode: box
+  unit_of_measurement: '°C'
+  icon: mdi:thermometer-high
+
+komfovent_intensive_supply_flow:
+  name: Intensive supply flow
+  min: 20
+  max: 100
+  step: 5
+  mode: box
+  unit_of_measurement: '%'
+  icon: mdi:fan
+
+komfovent_intensive_extract_flow:
+  name: Intensive extract flow
+  min: 20
+  max: 100
+  step: 5
+  mode: box
+  unit_of_measurement: '%'
+  icon: mdi:fan
+  
+komfovent_intensive_setpoint:
+  name: Intensive setpoint
+  min: 0
+  max: 40
+  step: 0.5
+  mode: box
+  unit_of_measurement: '°C'
+  icon: mdi:thermometer-high
+
+komfovent_boost_supply_flow:
+  name: Boost supply flow
+  min: 20
+  max: 100
+  step: 5
+  mode: box
+  unit_of_measurement: '%'
+  icon: mdi:fan
+
+komfovent_boost_extract_flow:
+  name: Boost extract flow
+  min: 20
+  max: 100
+  step: 5
+  mode: box
+  unit_of_measurement: '%'
+  icon: mdi:fan
+
+komfovent_boost_setpoint:
+  name: Boost setpoint
+  min: 0
+  max: 40
+  step: 0.5
+  mode: box
+  unit_of_measurement: '°C'
+  icon: mdi:thermometer-high

@@ -1,0 +1,84 @@
+esphome:
+  name: gate
+  friendly_name: Gate
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "ZyG4QaDryoYLsSTs6RJSXTQXOYmrRnCEbQXtthjiRIk="
+
+ota:
+  password: "c46c9848f49d9164db5757558729e50c"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Gate Fallback Hotspot"
+    password: "Pixkup2ljhJ3"
+
+switch:
+  - platform: gpio
+    pin:
+      number: 32
+      inverted: true
+    id: relay1
+    name: "Gate Open"
+    icon: "mdi:gate"
+    on_turn_on:
+    - delay: 200ms
+    - switch.turn_off: relay1
+  - platform: gpio
+    pin:
+      number: 33
+      inverted: true
+    id: relay2
+    name: "Gate Stop"
+    icon: "mdi:gate"
+    on_turn_on:
+    - delay: 200ms
+    - switch.turn_off: relay2
+  - platform: gpio
+    pin:
+      number: 25
+      inverted: true
+    id: relay3
+    name: "Gate Close"
+    icon: "mdi:gate"
+    on_turn_on:
+    - delay: 200ms
+    - switch.turn_off: relay3
+  - platform: gpio
+    pin:
+      number: 26
+      inverted: true
+    id: relay4
+    name: "Door Open"
+    icon: "mdi:gate"
+    on_turn_on:
+    - delay: 5000ms
+    - switch.turn_off: relay4
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: 27
+      inverted: true
+      mode:
+        input: True
+        pullup: True
+    name: Gate State
+    filters:
+      - delayed_on_off: 1s
+
+    

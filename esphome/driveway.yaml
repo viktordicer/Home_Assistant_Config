@@ -1,0 +1,39 @@
+esphome:
+  name: driveway
+  friendly_name: Driveway
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "f5CLITwZYO8xv/vWLQgDgzAGwUN0lHZKOhIeflLl+vo="
+
+ota:
+  password: "f201514097392eb81364a51aa48e7765"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Driveway Fallback Hotspot"
+    password: "RMRoSSaj1laQ"
+
+captive_portal:
+
+switch:
+  - platform: gpio
+    pin:
+      number: 27
+      inverted: false
+    id: relay1
+    name: " Diveway Light"
+    icon: "mdi:light"

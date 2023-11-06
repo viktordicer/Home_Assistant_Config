@@ -9,10 +9,6 @@
       topic: sensor/technical/set_internal_max
       retain: true
       payload: '{{ states(''input_number.slider_water_internal'') | int }}'
-  - service: telegram_bot.send_message
-    data:
-      message: 'Internal max flow was changed to {{ states(''input_number.slider_water_internal'')
-        | int }} '
   mode: single
 - id: fb1b26059d554d8da12ca7685e1c7a1a
   alias: water_external_max
@@ -25,10 +21,6 @@
       topic: sensor/technical/set_external_max
       retain: true
       payload: '{{ states(''input_number.slider_water_external'') | int }}'
-  - service: telegram_bot.send_message
-    data:
-      message: 'External max flow was changed to {{ states(''input_number.slider_water_external'')
-        | int }} '
   mode: single
 - id: '1623776017339'
   alias: Internal water valve
@@ -72,6 +64,11 @@
     event: start
   condition: []
   action:
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
   - service: mqtt.publish
     data:
       topic: command/pool/state
@@ -83,7 +80,7 @@
   - service: mqtt.publish
     data:
       payload: s-0-11111-111
-      topic: sensor.blind_all
+      topic: sensor/blind/all
   mode: single
 - id: '1632504069551'
   alias: blind-all-tilt
@@ -383,21 +380,6 @@
       - sensor.l1_oven_sum
       - sensor.l2_refrigerator_sum
   mode: single
-- id: '1657551051872'
-  alias: Water_sql_update
-  description: ''
-  trigger:
-  - platform: time_pattern
-    hours: /1
-  condition: []
-  action:
-  - service: homeassistant.update_entity
-    data: {}
-    target:
-      entity_id:
-      - sensor.external_water_daily_3
-      - sensor.internal_water_daily_3
-  mode: single
 - id: '1658036408570'
   alias: Terrace opened warning
   description: ''
@@ -457,4 +439,624 @@
     data:
       title: Umývačka
       message: Riadik sa umyl. Otvoríš ma?
+  mode: single
+- id: '1675008223288'
+  alias: technical_hum_send
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.technical_humidity
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.technical_humidity
+    above: 72
+  action:
+  - service: notify.notify
+    data:
+      message: Vyvetrať technickú
+      title: Technická
+  mode: single
+- id: '1696794026184'
+  alias: Reolink Snapshot Visitor
+  description: ''
+  trigger:
+  - type: turned_on
+    platform: device
+    device_id: d99e381055e6e9185c4ad84d01ed1762
+    entity_id: d7563942ec406df276a9403953ff4b33
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: camera.snapshot
+    data:
+      filename: /config/www/tmp_doorbell/doorbell_visitor.jpg
+    target:
+      entity_id: camera.reolink_video_doorbell_wifi_sub
+  - service: camera.snapshot
+    data:
+      filename: /config/www/tmp_doorbell/visitor/doorbell_visitor_{{ now().strftime("%Y%m%d-%H%M%S")
+        }}.jpg
+    target:
+      entity_id: camera.reolink_video_doorbell_wifi_sub
+  - service: notify.notify
+    data:
+      message: Niekto zvoní
+      title: Zvonček
+      data:
+        image: /local/tmp_doorbell/doorbell_visitor.jpg
+  mode: single
+- id: '1697135266817'
+  alias: Reolink Snapshot Person
+  description: ''
+  trigger:
+  - type: turned_on
+    platform: device
+    device_id: d99e381055e6e9185c4ad84d01ed1762
+    entity_id: 7e8c2cebec8bbb34fa7057fd6b953071
+    domain: binary_sensor
+  condition:
+  - condition: state
+    entity_id: input_boolean.person_snapshot_doorbell
+    state: 'on'
+  action:
+  - service: camera.snapshot
+    data:
+      filename: /config/www/tmp_doorbell/person/doorbell_person_{{ now().strftime("%Y%m%d-%H%M%S")
+        }}.jpg
+    target:
+      entity_id: camera.reolink_video_doorbell_wifi_sub
+  - service: camera.snapshot
+    data:
+      filename: /config/www/tmp_doorbell/doorbell_person.jpg
+    target:
+      entity_id: camera.reolink_video_doorbell_wifi_sub
+  mode: single
+- id: '1697554947453'
+  alias: Komfovent ECO min temp num
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.komfovent_eco_min_temperature
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_eco_min_temperature'') | int !=
+      states(''input_number.komfovent_eco_min_temp'') | int }}'
+  action:
+  - service: input_number.set_value
+    data:
+      value: '{{states(''sensor.komfovent_eco_min_temperature'')}}'
+    target:
+      entity_id: input_number.komfovent_eco_min_temp
+  mode: single
+- id: '1697555905850'
+  alias: Komfovent ECO max temp num
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.komfovent_eco_max_temperature
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_eco_max_temperature'') | int !=
+      states(''input_number.komfovent_eco_max_temp'') | int }}'
+  action:
+  - service: input_number.set_value
+    data:
+      value: '{{states(''sensor.komfovent_eco_max_temperature'')}}'
+    target:
+      entity_id: input_number.komfovent_eco_max_temp
+  mode: single
+- id: '1697556450160'
+  alias: Komfovent ECO max sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_eco_max_temp
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_eco_max_temperature'') | int !=
+      states(''input_number.komfovent_eco_max_temp'') | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 200
+      unit: 1
+      value: '{{(states(''input_number.komfovent_eco_max_temp'') | float(2.0) * 10)
+        | int(20)}}'
+  mode: single
+- id: '1697557063832'
+  alias: Komfovent ECO min sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_eco_min_temp
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_eco_min_temperature'') | int !=
+      states(''input_number.komfovent_eco_min_temp'') | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 199
+      unit: 1
+      value: '{{(states(''input_number.komfovent_eco_min_temp'') | float(2.0) * 10)
+        | int(20)}}'
+  mode: single
+- id: '1697560804338'
+  alias: Komfovent AWAY supply num
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.komfovent_away_supply_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_away_supply_flow'') | int != states(''input_number.komfovent_away_supply_flow'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data:
+      value: '{{states(''sensor.komfovent_away_supply_flow'')}}'
+    target:
+      entity_id: input_number.komfovent_away_supply_flow
+  mode: single
+- id: '1697561084157'
+  alias: Komfovent NORMAL supply num
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.komfovent_normal_supply_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_normal_supply_flow'') | int != states(''input_number.komfovent_normal_supply_flow'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data:
+      value: '{{states(''sensor.komfovent_normal_supply_flow'')}}'
+    target:
+      entity_id: input_number.komfovent_normal_supply_flow
+  mode: single
+- id: '1697561181205'
+  alias: Komfovent INTENSIVE supply num
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.komfovent_intensive_supply_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_intensive_supply_flow'') | int !=
+      states(''input_number.komfovent_intensive_supply_flow'') | int }}'
+  action:
+  - service: input_number.set_value
+    data:
+      value: '{{states(''sensor.komfovent_intensive_supply_flow'')}}'
+    target:
+      entity_id: input_number.komfovent_intensive_supply_flow
+  mode: single
+- id: '1697561181206'
+  alias: Komfovent BOOST supply num
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.komfovent_boost_supply_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_boost_supply_flow'') | int != states(''input_number.komfovent_boost_supply_flow'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data:
+      value: '{{states(''sensor.komfovent_boost_supply_flow'')}}'
+    target:
+      entity_id: input_number.komfovent_boost_supply_flow
+  mode: single
+- id: '1697560965049'
+  alias: Komfovent NORMAL extract num
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.komfovent_normal_extract_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_normal_extract_flow'') | int !=
+      states(''input_number.komfovent_normal_extract_flow'') | int }}'
+  action:
+  - service: input_number.set_value
+    data:
+      value: '{{states(''sensor.komfovent_normal_extract_flow'')}}'
+    target:
+      entity_id: input_number.komfovent_normal_extract_flow
+  mode: single
+- id: '1697560965050'
+  alias: Komfovent INTENSIVE extract num
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.komfovent_intensive_extract_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_intensive_extract_flow'') | int
+      != states(''input_number.komfovent_intensive_extract_flow'') | int }}'
+  action:
+  - service: input_number.set_value
+    data:
+      value: '{{states(''sensor.komfovent_intensive_extract_flow'')}}'
+    target:
+      entity_id: input_number.komfovent_intensive_extract_flow
+  mode: single
+- id: '1697560965051'
+  alias: Komfovent BOOST extract num
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.komfovent_boost_extract_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_boost_extract_flow'') | int != states(''input_number.komfovent_boost_extract_flow'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data:
+      value: '{{states(''sensor.komfovent_boost_extract_flow'')}}'
+    target:
+      entity_id: input_number.komfovent_boost_extract_flow
+  mode: single
+- id: '1697565913706'
+  alias: Komfovent AWAY Setpoint num
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.komfovent_away_setpoint
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_away_setpoint'') | int != states(''input_number.komfovent_away_setpoint'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data:
+      value: '{{states(''sensor.komfovent_away_setpoint'')}}'
+    target:
+      entity_id: input_number.komfovent_away_setpoint
+  mode: single
+- id: '1697565913707'
+  alias: Komfovent NORMAL Setpoint num
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.komfovent_normal_setpoint
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_normal_setpoint'') | int != states(''input_number.komfovent_normal_setpoint'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data:
+      value: '{{states(''sensor.komfovent_normal_setpoint'')}}'
+    target:
+      entity_id: input_number.komfovent_normal_setpoint
+  mode: single
+- id: '1697565913708'
+  alias: Komfovent INTENSIVE Setpoint num
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.komfovent_intensive_setpoint
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_intensive_setpoint'') | int != states(''input_number.komfovent_intensive_setpoint'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data:
+      value: '{{states(''sensor.komfovent_intensive_setpoint'')}}'
+    target:
+      entity_id: input_number.komfovent_intensive_setpoint
+  mode: single
+- id: '1697565913709'
+  alias: Komfovent BOOST Setpoint num
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.komfovent_boost_setpoint
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_boost_setpoint'') | int != states(''input_number.komfovent_boost_setpoint'')
+      | int }}'
+  action:
+  - service: input_number.set_value
+    data:
+      value: '{{states(''sensor.komfovent_boost_setpoint'')}}'
+    target:
+      entity_id: input_number.komfovent_boost_setpoint
+  mode: single
+- id: '1697566655422'
+  alias: Komfovent AWAY supply sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_away_supply_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_away_supply_flow'') | int != states(''input_number.komfovent_away_supply_flow'')
+      | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 99
+      unit: 2
+      value:
+      - 0
+      - '{{states(''input_number.komfovent_away_supply_flow'')}}'
+  mode: single
+- id: '1697566655423'
+  alias: Komfovent NORMAL supply sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_normal_supply_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_normal_supply_flow'') | int != states(''input_number.komfovent_normal_supply_flow'')
+      | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 105
+      unit: 2
+      value:
+      - 0
+      - '{{states(''input_number.komfovent_normal_supply_flow'')}}'
+  mode: single
+- id: '1697566655425'
+  alias: Komfovent INTENSIVE supply sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_intensive_supply_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_intensive_supply_flow'') | int !=
+      states(''input_number.komfovent_intensive_supply_flow'') | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 111
+      unit: 2
+      value:
+      - 0
+      - '{{states(''input_number.komfovent_intensive_supply_flow'')}}'
+  mode: single
+- id: '1697566655426'
+  alias: Komfovent BOOST supply sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_boost_supply_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_boost_supply_flow'') | int != states(''input_number.komfovent_boost_supply_flow'')
+      | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 117
+      unit: 2
+      value:
+      - 0
+      - '{{states(''input_number.komfovent_boost_supply_flow'')}}'
+  mode: single
+- id: '1697566655427'
+  alias: Komfovent AWAY extract sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_away_extract_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_away_extract_flow'') | int != states(''input_number.komfovent_away_extract_flow'')
+      | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 101
+      unit: 2
+      value:
+      - 0
+      - '{{states(''input_number.komfovent_away_extract_flow'')}}'
+  mode: single
+- id: '1697566655428'
+  alias: Komfovent NORMAL extract sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_normal_extract_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_normal_extract_flow'') | int !=
+      states(''input_number.komfovent_normal_extract_flow'') | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 107
+      unit: 2
+      value:
+      - 0
+      - '{{states(''input_number.komfovent_normal_extract_flow'')}}'
+  mode: single
+- id: '1697566655429'
+  alias: Komfovent INTENSIVE extract sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_intensive_extract_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_intensive_extract_flow'') | int
+      != states(''input_number.komfovent_intensive_extract_flow'') | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 113
+      unit: 2
+      value:
+      - 0
+      - '{{states(''input_number.komfovent_intensive_extract_flow'')}}'
+  mode: single
+- id: '1697566655430'
+  alias: Komfovent BOOST extract sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_boost_extract_flow
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_boost_extract_flow'') | int != states(''input_number.komfovent_boost_extract_flow'')
+      | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 119
+      unit: 2
+      value:
+      - 0
+      - '{{states(''input_number.komfovent_boost_extract_flow'')}}'
+  mode: single
+- id: '1697567661103'
+  alias: Komfovent AWAY Setpoint sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_away_setpoint
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_away_setpoint'') | int != states(''input_number.komfovent_away_setpoint'')
+      | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 103
+      unit: 1
+      value: '{{(states(''input_number.komfovent_away_setpoint'') | float(2.0) * 10)
+        | int(20)}}'
+  mode: single
+- id: '1697567661104'
+  alias: Komfovent NORMAL Setpoint sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_normal_setpoint
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_normal_setpoint'') | int != states(''input_number.komfovent_normal_setpoint'')
+      | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 109
+      unit: 1
+      value: '{{(states(''input_number.komfovent_normal_setpoint'') | float(2.0) *
+        10) | int(20)}}'
+  mode: single
+- id: '1697567661105'
+  alias: Komfovent INTENSIVE Setpoint sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_intensive_setpoint
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_intensive_setpoint'') | int != states(''input_number.komfovent_intensive_setpoint'')
+      | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 115
+      unit: 1
+      value: '{{(states(''input_number.komfovent_intensive_setpoint'') | float(2.0)
+        * 10) | int(20)}}'
+  mode: single
+- id: '1697567661106'
+  alias: Komfovent BOOST Setpoint sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.komfovent_boost_setpoint
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.komfovent_boost_setpoint'') | int != states(''input_number.komfovent_boost_setpoint'')
+      | int }}'
+  action:
+  - service: modbus.write_register
+    data:
+      hub: Komfovent
+      address: 121
+      unit: 1
+      value: '{{(states(''input_number.komfovent_boost_setpoint'') | float(2.0) *
+        10) | int(20)}}'
+  mode: single
+- id: '1698083144388'
+  alias: Reolink Snapshot Motion
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: d99e381055e6e9185c4ad84d01ed1762
+    entity_id: cc3e8d4f64943c87da8266afc5745266
+    domain: binary_sensor
+  condition:
+  - condition: state
+    entity_id: input_boolean.motion_snapshot_doorbell
+    state: 'on'
+  action:
+  - service: camera.snapshot
+    data:
+      filename: /config/www/tmp_doorbell/motion/doorbell_motion_{{ now().strftime("%Y%m%d-%H%M%S")
+        }}.jpg
+    target:
+      entity_id: camera.reolink_video_doorbell_wifi_sub
+  - service: camera.snapshot
+    data:
+      filename: /config/www/tmp_doorbell/doorbell_motion.jpg
+    target:
+      entity_id: camera.reolink_video_doorbell_wifi_sub
   mode: single
